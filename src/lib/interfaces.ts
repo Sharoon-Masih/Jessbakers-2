@@ -3,6 +3,12 @@ export interface IheroSection {
     mainText:string,
     desc:string,
     heroImg:string,
-    featuredImgs:string[],
+    featuredImgs:{
+        _type:string,
+        asset:{
+            _ref:string,
+            _type:string
+        }
+    }[],
     status:boolean
 }
