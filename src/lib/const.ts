@@ -26,4 +26,20 @@ const NavItems:{
     },
 ]
 
-export {NavItems}
+const Icons:{name:string,src:string}[]=[
+    {
+        name:"fb",
+        src:"/fb/Facebook.png"
+    },
+    {
+        name:"insta",
+        src:"/insta/Instagram.png"
+    },
+    {
+        name:"tweet",
+        src:"/twit/Twitter.png"
+    },
+]
+
+export {NavItems,Icons}
+

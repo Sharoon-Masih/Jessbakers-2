@@ -26,8 +26,8 @@ const Hero = async () => {
     <section className={`min-h-screen relative  ${poppin.className}   overflow-hidden`}>
       <div className='2xl:max-w-[1280px] mx-auto flex h-full items-start md:items-center lg:items-start  lg:justify-between m-auto px-4  lg:px-0  lg:pl-[93px] flex-col lg:flex-row  '>
         {Data[0].status && <div className='pt-[66px] lg:pt-[96px]  z-10 flex flex-col justify-between text-[#4A1D1F] items-center  lg:items-start'>
-          <h1 className={`md:text-center  md:w-[700px]  lg:text-start lg:w-[440px] xl:w-[530px] xl:h-[132] text-[38px] md:text-[44px] font-bold`}>{Data[0].mainText}</h1>
-          <p className=' md:text-center md:w-[700px] lg:text-start pt-[20px] lg:w-[450px]  xl:w-[510px] xl:h-[108px] text-[20px] md:text-[24px] font-normal text-[#272727] '>{Data[0].desc}</p>
+          <h1 className={`sm:text-center  md:w-[700px]  lg:text-start lg:w-[440px] xl:w-[530px] xl:h-[132] text-[38px] md:text-[44px] font-bold`}>{Data[0].mainText}</h1>
+          <p className=' sm:text-center md:w-[700px] lg:text-start pt-[20px] lg:w-[450px]  xl:w-[510px] xl:h-[108px] text-[20px] md:text-[24px] font-normal text-[#272727] '>{Data[0].desc}</p>
         </div>}
         <div className='absolute h-[1019px] w-[1011px] rounded-full bg-[#FBEDCD] shadow-2xl -top-20 left-[90px]  lg:left-[618px] blur-3xl bg-opacity-70 '>
         </div>
