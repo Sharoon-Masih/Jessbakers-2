@@ -15,7 +15,7 @@ const Footer = () => {
         </div>
         <div className='bg-[#4A1D1F] h-[0.5px] bg-opacity-25' />
         <div className='flex flex-col md:flex-row items-center justify-between pt-[35px] gap-4'>
-          <h3 className='text-[16px] font-medium text-[#272727] '>© 2024 Jess Bakers. All rights reserved.</h3>
+          <h3 className='text-[16px] font-medium text-[#272727] text-center md:text-start'>© 2024 Jess Bakers. All rights reserved.</h3>
           <ul className='flex justify-between items-center text-[20px] gap-[28px] font-medium text-[#272727]'>
             {Icons.map((item) => <li key={item.name}>
               <Image src={item.src} width={24} height={24} alt={item.name} /></li>)}
