@@ -23,9 +23,6 @@ export function Carousels({ ProductData }: { ProductData: Iproduct[] }) {
     const [isChangeCard, SetisChangeCard] = React.useState<number | null>(null)
     const pathName = usePathname()
     const Route = useRouter()
-    const searchParams = useSearchParams()
-
-    console.log(searchParams.get('item'));
     React.useEffect(() => {
 
         SetisRating(true)
@@ -49,7 +46,7 @@ export function Carousels({ ProductData }: { ProductData: Iproduct[] }) {
                             let emptyStarCount: number = total - noOfFullStar
                             return <CarouselItem key={index} className="basis-[250px] sm:basis-[300px] relative ">
                                 <div className="p-1">
-                                    <div onClick={() => { Route.replace(`${pathName}?item=${Item.slug}`) }}><SingleItemCard Item={Item} searchItem={searchParams.get('item') as string}>
+                                    <div onClick={() => { Route.replace(`${pathName}?item=${Item.slug}`) }}><SingleItemCard Item={Item} >
 
                                         <Card className="h-[370px] hover:ring hover:ring-[#FBEDCD] hover:transition duration-100">
                                             <CardContent className="flex flex-col aspect-square items-start justify-center p-6 gap-1">
