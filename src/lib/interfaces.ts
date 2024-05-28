@@ -21,6 +21,21 @@ export interface Iproduct {
     price: number,
     "slug": string,
     "Img": string,
+    price_id: string,
+    category:string
 
+
+}
+
+export interface ICartProduct {
+    name:string,
+    price:number,
+    description:string,
+    image:string,
+    id:string,
+    currency:string,
+    slug:string,
+    category:string,
+    price_id?:string
 
 }

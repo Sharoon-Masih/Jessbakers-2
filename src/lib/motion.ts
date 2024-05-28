@@ -8,7 +8,8 @@ export const dropDown = {
         height: 300,
         transition: {
             type: "tween",
-            ease: "easeIn"
+            ease: "easeIn",
+            duration:0.2
         }
     }
 }
@@ -21,7 +22,9 @@ export const dropup = {
         opacity: 0,
         transition: {
             type: "tween",
-            ease: "easeIn"
+            ease: "easeIn",
+            duration:0.2,
+            delay: 0.3
         }
     }
 }
@@ -43,7 +46,7 @@ export const expand = (action: boolean, screenSize?: "sm") => {
     }
 }
 
-export const Slider = (side: "left" | "right",delay:number) => {
+export const Slider = (side: "left" | "right", delay: number) => {
     return {
         hidden: {
             x: side === "left" ? "-100%" : "100%",
@@ -56,8 +59,8 @@ export const Slider = (side: "left" | "right",delay:number) => {
             transition: {
                 type: "tween",
                 ease: "easeOut",
-                duration:0.75,
-                delay:delay
+                duration: 0.75,
+                delay: delay
 
             }
         }
@@ -65,20 +68,40 @@ export const Slider = (side: "left" | "right",delay:number) => {
 
 }
 
-export const FadeIn=(delay:number)=>{
+export const FadeIn = (delay: number) => {
     return {
-        hidden:{
-            width:"10%",
-            opacity:0
+        hidden: {
+            width: "10%",
+            opacity: 0
         },
-        show:{
-            width:"230px",
-            opacity:1,
-            transition:{
-                type:"tween",
-                ease:"easeIn",
-                duration:0.5,
-                delay:delay
+        show: {
+            width: "230px",
+            opacity: 1,
+            transition: {
+                type: "tween",
+                ease: "easeIn",
+                duration: 0.5,
+                delay: delay
+            }
+        }
+    }
+}
+export const FadeInForText = (delay: number) => {
+    return {
+        hidden: {
+            y: -10,
+
+            opacity: 0
+        },
+        show: {
+            y: 0,
+
+            opacity: 1,
+            transition: {
+                type: "tween",
+                ease: "easeIn",
+                duration: 0.5,
+                delay: delay
             }
         }
     }

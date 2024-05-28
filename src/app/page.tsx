@@ -15,17 +15,19 @@ const getProductData = async () => {
         price,
         "slug":slug.current,
        "Img": images[0].asset -> url,
+       price_id,
+       category
       
      }`
 
   const fetchData = await client.fetch(query);
-  return fetchData //yaha ques yeh haka jasa uper wali line may fetchData ma await ka through promise resolve hoka agya but still yaha par yeh jab return kr rhay hain toh promise hi return ho rha hai. 
+  return fetchData 
 }
 
 export default async function Home() {
   const ProductData:Iproduct[]=await getProductData()
   return (
-    <main >
+    <main id='home'>
       <Hero />
       <Quote/>
       <Carousels ProductData={ProductData}/>

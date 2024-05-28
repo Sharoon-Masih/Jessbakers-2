@@ -36,5 +36,11 @@ export default {
             title: "Slug of Product",
             options:{ source: "name" }
         },
+        {
+            type: "string",
+            name: "price_id",
+            title: "Stripe Product Id",
+        
+        },
     ]
 }
