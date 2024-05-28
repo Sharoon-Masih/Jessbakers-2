@@ -11,7 +11,7 @@ const Footer = () => {
         <div className='flex justify-center md:justify-between items-center pb-[35px]'>
           <strong className='uppercase text-[30px] font-medium tracking-[9%]'>Jess bakers</strong>
           <ul className='hidden md:flex justify-between items-center text-[20px] gap-[48px] font-medium text-[#272727]'>
-            {NavItems.map((item) => <Link href={item.path}><li key={item.id}>{item.name}</li></Link>)}
+            {NavItems.map((item) => <Link href={item.path} key={item.id}><li >{item.name}</li></Link>)}
           </ul>
         </div>
         <div className='bg-[#4A1D1F] h-[0.5px] bg-opacity-25' />
