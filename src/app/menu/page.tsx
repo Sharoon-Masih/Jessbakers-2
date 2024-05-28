@@ -28,7 +28,7 @@ const Menu = async () => {
                 <span className={`text-[18px] sm:text-[20px] md:text-[25px] font-semibold tracking-[9%] text-[#4A1D1F] uppercase truncate`}>
                    All Categorie&apos;S
                 </span>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>{ItemData.map((Item) => <ItemCard Item={Item} />)}</div>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>{ItemData.map((Item) => <ItemCard Item={Item} key={Item._id}/>)}</div>
             </div>
         </section>
     )
