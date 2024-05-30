@@ -40,7 +40,7 @@ export function PhoneBar() {
     // useEffect(() => {
     //     Setclick(null);
     // }, [menuclick])
-    console.log(categories);
+   
     return (
 
 

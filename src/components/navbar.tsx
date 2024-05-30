@@ -12,6 +12,7 @@ import { FadeInForText, dropDown, dropup, expand } from '@/lib/motion';
 import { PhoneBar } from './phonebar';
 import { client } from '../../sanity/lib/client';
 import { Cart } from './Cart';
+import SearchBar from './searchBar';
 
 
 
@@ -80,32 +81,12 @@ const Navbar = () => {
 
                 </nav>
                 <div className='w-auto gap-3 lg:gap-31 h-[45px] xl:w-[376px] flex justify-between items-center ' >
-                    <div className='xl:w-[251px] h-full flex justify-between items-center'>
-                        {/* this will show on xl screen */}
-                        <Input className='hidden xl:block h-[45px] rounded-none focus:outline-none active:outline-none border-[#4A1D1F] box-border text-[16px] text-[#B4B4B4]' placeholder='Search' />
-
-                        {/* this will show on all screen before xl*/}
-                        {close && <motion.input
-                            variants={expand(true)}
-                            initial="hidden"
-                            whileInView={"show"}
-                            className='block xl:hidden w-[100px] sm:w-auto h-[25px] sm:h-[45px] rounded-none focus:outline-none active:outline-none border-[#4A1D1F] box-border text-[#B4B4B4] truncate ' placeholder='Search' />}
-
-                        {/* this btn will show on all screen before xl*/}
-                        <button type='submit' className=' xl:hidden w-[25px] h-[25px] sm:h-[45px] sm:w-[45px] flex justify-center items-center bg-[#4A1D1F] ' onClick={() => { Setclose((prev) => !prev) }}>
-                            <Search className='w-[16px] h-[16px] text-[#FBEDCD]' />
-                        </button>
-                        {/* this btn will show on xl screen*/}
-                        <button type='submit' className=' hidden w-[25px] h-[25px] sm:h-[45px] sm:w-[45px] xl:flex justify-center items-center bg-[#4A1D1F] '>
-                            <Search className='w-[16px] h-[16px] text-[#FBEDCD]' />
-                        </button>
-                    </div>
-
+                    <SearchBar close={close} Setclose={Setclose}/>
                     {!close && <>
                         <span className='flex justify-center items-center w-[25px]  sm:w-[34px] sm:h-[34px]'>
                             <AvatarIcon className='w-[30px] h-[30px] text-[#272727]' />
                         </span>
-                        <span className='flex justify-center items-center w-[25px] sm:w-[34px] sm:h-[34px]'>
+                        <span className='flex justify-center items-center w-[25px] sm:w-[34px] sm:h-[34px] cursor-pointer'>
                             <Cart />
                         </span>
                         <div className='block lg:hidden'>

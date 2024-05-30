@@ -59,7 +59,7 @@ export function Cart() {
                         </div>
                         <Button className="w-full bg-[#4A1D1F]">Checkout</Button>
 
-                        <span>OR <span className="text-[#4A1D1F] text-opacity-100 text-base font-semibold">Continue shopping</span></span>
+                        <span>OR <span className="text-[#4A1D1F] text-opacity-100 text-base font-semibold  cursor-pointer" onClick={handleCartClick}>Continue shopping</span></span>
                     </div>
                 </div> : <div className="flex h-[96%] w-full justify-center items-center flex-col">
 

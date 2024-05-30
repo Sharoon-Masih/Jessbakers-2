@@ -5,7 +5,7 @@ export const dropDown = {
         height: 0,
     },
     show: {
-        height: "auto",
+        height: 300,
         transition: {
             type: "tween",
             ease: "easeIn",

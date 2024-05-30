@@ -24,7 +24,7 @@ const ItemCard = ({ Item }: { Item: Iproduct, }) => {
     let emptyStarCount: number = total - noOfFullStar
     return (
         isRating ?
-            <div onClick={() => { Route.replace(`${pathName}?item=${Item.slug}`) }} >
+            <div >
                 <SingleItemCard Item={Item} >
                     <Card className="h-[370px]  w-[300px] hover:ring hover:ring-[#FBEDCD] hover:transition duration-100 ">
                         <CardContent className="flex flex-col aspect-square items-start justify-center p-6 gap-1">
@@ -37,7 +37,7 @@ const ItemCard = ({ Item }: { Item: Iproduct, }) => {
                             }{emptyStarCount !== 0 && Array.from({ length: emptyStarCount }).map((_, idx) => <HiOutlineStar className="text-yellow-500" key={idx} />)}</div>
                         </CardContent>
                     </Card>
-                </SingleItemCard></div> :  <CardSkeleton />
+                </SingleItemCard></div> : <CardSkeleton />
     )
 }
 

@@ -1,13 +1,8 @@
 "use client"
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Iproduct } from "@/lib/interfaces"
@@ -18,13 +13,14 @@ import { Textarea } from "./ui/textarea"
 import { XMarkIcon, PlusIcon, MinusIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { Button } from "./ui/button"
-import { useShoppingCart } from 'use-shopping-cart'
+import { useToast } from "./ui/use-toast"
 import AddtoCart from "./addtoCart"
 
 export function SingleItemCard({ children, Item, searchItem }: { children: ReactNode, Item: Iproduct, searchItem?: string }) {
 
     const [isClick, SetisClick] = useState(false);
     // const {addItem}= useShoppingCart()
+    
 
     return (
 
@@ -60,7 +56,7 @@ export function SingleItemCard({ children, Item, searchItem }: { children: React
 
 
                     </div>
-               <AlertDialogCancel className="p-0  pb-3 border-none shadow-none lg:pb-0 lg:border  lg:shadow"><AddtoCart Item={Item}/></AlertDialogCancel>
+                    <AlertDialogCancel className="p-0  pb-3 border-none shadow-none lg:pb-0 lg:border  lg:shadow" ><AddtoCart Item={Item} /></AlertDialogCancel>
                 </div>
 
             </AlertDialogContent>
