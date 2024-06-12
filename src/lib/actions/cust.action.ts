@@ -46,7 +46,7 @@ export async function deleteCustomer(deleteCustomer: deleteCustParams) {
         if(!customerToDelete){
             throw new Error ("customer not found")
         }
-        const customerDeleted = await Customer.findByIdAndDelete(customerToDelete._id, updateCustomer)
+        const customerDeleted = await Customer.findByIdAndDelete(customerToDelete._id)
         return  customerDeleted ? JSON.parse(JSON.stringify(customerToDelete)) : null
 
     } catch (error) {
