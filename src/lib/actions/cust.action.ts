@@ -21,3 +21,20 @@ export async function createNewCustomer(customer: custSchemaType) {
         handleError(error)
     }
 }
+
+export async function updateCustomer(updateCustomer: custSchemaType) {
+
+    try {
+        await connectToDb()
+        const customerToUpdate:Icustomer | null = await Customer.findOne({ clerkId: updateCustomer.clerkId })
+        if(!customerToUpdate){
+            throw new Error ("customer not found")
+        }
+        const customerUpdated = await Customer.findByIdAndUpdate(customerToUpdate._id, updateCustomer)
+        return JSON.parse(JSON.stringify(customerUpdated))
+
+    } catch (error) {
+        handleError(error)
+    }
+
+}

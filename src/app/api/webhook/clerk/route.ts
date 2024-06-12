@@ -2,7 +2,7 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent, clerkClient } from '@clerk/nextjs/server'
 import { custSchemaType } from '@/lib/types'
-import { createNewCustomer } from '@/lib/actions/cust.action'
+import { createNewCustomer, updateCustomer } from '@/lib/actions/cust.action'
 import { Icustomer } from '@/lib/database/models/cust.model'
 import { NextResponse } from 'next/server'
 
@@ -77,6 +77,21 @@ export async function POST(req: Request) {
             return NextResponse.json({"message":"OK","customer":newCustomer})
         }
     }
+    if (eventType === "user.updated") {
+        const { id, first_name, last_name, email_addresses, image_url } = evt.data
+        const Customer: custSchemaType = {
+            clerkId: id,
+            firstName: first_name!,
+            lastName: last_name!,
+            email: email_addresses[0].email_address,
+            photo: image_url
+        }
+
+        const updatedCustomer: Icustomer = await updateCustomer(Customer)
+
+        return NextResponse.json({"message":"OK","customer":updatedCustomer})
+    }
+    
 
     return new Response('', { status: 200 })
 }
