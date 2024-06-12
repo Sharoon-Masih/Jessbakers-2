@@ -2,7 +2,7 @@
 
 import { connectToDb } from "../database";
 import Customer, { Icustomer } from "../database/models/cust.model";
-import { custSchemaType, handleError } from "../types";
+import { custSchemaType, deleteCustParams, handleError } from "../types";
 
 export async function createNewCustomer(customer: custSchemaType) {
 
@@ -38,3 +38,20 @@ export async function updateCustomer(updateCustomer: custSchemaType) {
     }
 
 }
+export async function deleteCustomer(deleteCustomer: deleteCustParams) {
+
+    try {
+        await connectToDb()
+        const customerToDelete:Icustomer | null = await Customer.findOne({ clerkId: deleteCustomer.id })
+        if(!customerToDelete){
+            throw new Error ("customer not found")
+        }
+        const customerDeleted = await Customer.findByIdAndDelete(customerToDelete._id, updateCustomer)
+        return  customerDeleted ? JSON.parse(JSON.stringify(customerToDelete)) : null
+
+    } catch (error) {
+        handleError(error)
+    }
+
+}
+

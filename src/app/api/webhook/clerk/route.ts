@@ -2,7 +2,7 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent, clerkClient } from '@clerk/nextjs/server'
 import { custSchemaType } from '@/lib/types'
-import { createNewCustomer, updateCustomer } from '@/lib/actions/cust.action'
+import { createNewCustomer, deleteCustomer, updateCustomer } from '@/lib/actions/cust.action'
 import { Icustomer } from '@/lib/database/models/cust.model'
 import { NextResponse } from 'next/server'
 
@@ -61,20 +61,20 @@ export async function POST(req: Request) {
             clerkId: id,
             firstName: first_name!,
             lastName: last_name!,
-            email: email_addresses[0].email_address,
+            email: email_addresses[0].email_address ?? ' ',
             photo: image_url
         }
 
         const newCustomer: Icustomer = await createNewCustomer(Customer)
 
         if (newCustomer) {
-           await clerkClient.users.updateUserMetadata(id, {
+            await clerkClient.users.updateUserMetadata(id, {
                 publicMetadata: {
                     userId: newCustomer._id
                 }
             })
 
-            return NextResponse.json({"message":"OK","customer":newCustomer})
+            return NextResponse.json({ "message": "OK", "customer": newCustomer })
         }
     }
     if (eventType === "user.updated") {
@@ -83,15 +83,22 @@ export async function POST(req: Request) {
             clerkId: id,
             firstName: first_name!,
             lastName: last_name!,
-            email: email_addresses[0].email_address,
+            email: email_addresses[0].email_address ?? ' ',
             photo: image_url
         }
 
         const updatedCustomer: Icustomer = await updateCustomer(Customer)
 
-        return NextResponse.json({"message":"OK","customer":updatedCustomer})
+        return NextResponse.json({ "message": "OK", "customer": updatedCustomer })
     }
-    
+    if (eventType === "user.deleted") {
+        const { id } = evt.data
+
+        const deletedCustomer = await deleteCustomer({ id: id! })
+
+        return deletedCustomer ? NextResponse.json({ "message": "deleted successfully","customer": deletedCustomer }) : null
+    }
+
 
     return new Response('', { status: 200 })
 }

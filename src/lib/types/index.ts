@@ -7,6 +7,12 @@ export type custSchemaType = {
     photo: string
 }
 
+
+//server action param
+export type deleteCustParams = {
+    id: string
+}
+
 //handle error func
 export function handleError(error: unknown) {
     console.log(error);
