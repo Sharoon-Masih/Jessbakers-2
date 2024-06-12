@@ -11,9 +11,9 @@ const SearchBar = ({ close, Setclose }: { close: boolean, Setclose: (callback: (
     // const [close, Setclose] = useState<boolean>(false)
     // const [value, Setvalue] = useState("Search")
     const Route: AppRouterInstance = useRouter();
-    const SearchParams = useSearchParams();
+    // const SearchParams = useSearchParams();
     const handleSearch = useDebouncedCallback((query: string) => {
-        const params = new URLSearchParams(SearchParams)
+        const params = new URLSearchParams()
         if (query) {
             params.set('item', query)
         }

@@ -1,7 +1,7 @@
 import { client } from '../../../sanity/lib/client';
 import { Iproduct } from '@/lib/interfaces';
 import ItemCard from '@/components/itemCard';
-import { Suspense } from 'react';
+
 
 const getSearchData = async () => {
     const query = `*[ _type == "product" ]{
