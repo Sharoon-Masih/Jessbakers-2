@@ -20,17 +20,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-    <html lang="en">
-      <body className={inter.className}>
-        <Providers>
-          <Navbar />
-          {children}
-          <Toaster />
-          <Footer />
-        </Providers>
-      </body>
-    </html>
+    <ClerkProvider appearance={
+      {
+        layout: {
+          helpPageUrl: "https://clerk.dev/support",
+          privacyPageUrl: "https://clerk.dev/privacy",
+          showOptionalFields: true,
+          socialButtonsPlacement: "top",
+          socialButtonsVariant: "iconButton",
+          termsPageUrl: "https://clerk.dev/terms",
+        },
+        variables: {
+          
+          colorDanger: "red",
+          colorSuccess: "green",
+
+          // colorText: "white"
+        },
+        elements: {
+          formButtonPrimary: "bg-[#4A1D1F] border-3 border-[#4A1D1F] hover:bg-[#FBEDCD] hover:text-primary text-sm normal-case",
+
+        }
+      }
+    }>
+      <html lang="en">
+        <body className={inter.className}>
+          <Providers>
+            <Navbar />
+            {children}
+            <Toaster />
+            <Footer />
+          </Providers>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

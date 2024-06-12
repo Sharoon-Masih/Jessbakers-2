@@ -3,7 +3,7 @@ import React from 'react'
 
 const SignInPage = () => {
   return (
-    <div className='height flex items-center justify-center'>
+    <div className=' height flex items-center justify-center'>
     <SignIn>
     </SignIn>
     </div>
