@@ -15,6 +15,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { Card, CardContent } from "../ui/card"
 import Image from "next/image"
 import { HiOutlineStar, HiStar } from "react-icons/hi2"
+import { useEffect } from "react"
 
 
 export function Carousels({ ProductData }: { ProductData: Iproduct[] }) {
@@ -23,7 +24,7 @@ export function Carousels({ ProductData }: { ProductData: Iproduct[] }) {
     const [isChangeCard, SetisChangeCard] = React.useState<number | null>(null)
     const pathName = usePathname()
     const Route = useRouter()
-    React.useEffect(() => {
+useEffect(() => {
 
         SetisRating(true)
     }, [])
