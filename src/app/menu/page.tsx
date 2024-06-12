@@ -64,11 +64,11 @@ const Page = async ({ searchParams }: { searchParams: { item: string } }) => {
                         {SearchData.filter((Item) => Item.category === category.name).map((Item) => <ItemCard Item={Item} key={Item._id} />)}
 
                     </div> </div>) :
-                    <Suspense fallback={<CardSkeleton />}>
+                    
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>
-                            {searchParams.item && filterByStartingChars(SearchData, searchParams.item).map((Item) => <ItemCard Item={Item} key={Item._id} />)}
+                          <Suspense fallback={<CardSkeleton />}> {searchParams.item && filterByStartingChars(SearchData, searchParams.item).map((Item) => <ItemCard Item={Item} key={Item._id} />)}</Suspense> 
 
-                        </div></Suspense>
+                        </div>
                 }
 
             </div>
