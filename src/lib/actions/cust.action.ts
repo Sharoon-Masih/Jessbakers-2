@@ -10,7 +10,7 @@ export async function createNewCustomer(customer: custSchemaType) {
 
         await connectToDb()
 
-        const newCustomer: Icustomer = await Customer.create({ customer })
+        const newCustomer: Icustomer = await Customer.create(customer)
 
         if (!newCustomer) {
             throw new Error('customer not created successfully')
