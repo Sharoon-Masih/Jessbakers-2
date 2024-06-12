@@ -14,8 +14,8 @@ export interface Icustomer extends Document {
 
 const custSchema = new Schema({
     clerkId: { type: String, required: true, unique: true },
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    firstName: { type: String,required: true},
+    lastName: { type: String,required: true},
     email: { type: String, required: true, unique: true },
     photo: { type: String }
 
