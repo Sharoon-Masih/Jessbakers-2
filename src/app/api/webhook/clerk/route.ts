@@ -91,12 +91,13 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ "message": "OK", "customer": updatedCustomer })
     }
+    
     if (eventType === "user.deleted") {
         const { id } = evt.data
 
         const deletedCustomer = await deleteCustomer({ id: id! })
 
-        return deletedCustomer ? NextResponse.json({ "message": "deleted successfully","customer": deletedCustomer }) : null
+        return NextResponse.json({ "message": "deleted successfully","customer": deletedCustomer }) 
     }
 
 
