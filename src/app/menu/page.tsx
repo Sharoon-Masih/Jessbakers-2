@@ -1,8 +1,6 @@
 import { client } from '../../../sanity/lib/client';
 import { Iproduct } from '@/lib/interfaces';
 import ItemCard from '@/components/itemCard';
-import { Suspense } from 'react';
-import CardSkeleton from '@/components/cardSkeleton';
 
 const getSearchData = async () => {
     const query = `*[ _type == "product" ]{
@@ -66,7 +64,7 @@ const Page = async ({ searchParams }: { searchParams: { item: string } }) => {
                     </div> </div>) :
                     
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>
-                           {searchParams.item && filterByStartingChars(SearchData, searchParams.item).map((Item) =><Suspense fallback={<CardSkeleton />} key={Item._id}> <ItemCard Item={Item}  /></Suspense> )}
+                           {searchParams.item && filterByStartingChars(SearchData, searchParams.item).map((Item) =><ItemCard Item={Item}  key={Item._id}/> )}
 
                         </div>
                 }
