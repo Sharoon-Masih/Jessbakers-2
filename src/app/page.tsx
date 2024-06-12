@@ -16,7 +16,7 @@ const getProductData = async () => {
         "slug":slug.current,
        "Img": images[0].asset -> url,
        price_id,
-       category
+       "category":category -> name
       
      }`
 

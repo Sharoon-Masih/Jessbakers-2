@@ -4,7 +4,7 @@ import { Poppins } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { NavItems } from '@/lib/const';
-import { ChevronsDown, ChevronsDownUp, ChevronsUpDown, Search, ShoppingCartIcon } from 'lucide-react';
+import { ChevronsDown, ChevronsDownUp, ChevronsUpDown, LogIn, LogInIcon, Search, ShoppingCartIcon } from 'lucide-react';
 import { Input } from './ui/input';
 import { AvatarIcon } from '@radix-ui/react-icons';
 import { motion } from "framer-motion"
@@ -13,6 +13,8 @@ import { PhoneBar } from './phonebar';
 import { client } from '../../sanity/lib/client';
 import { Cart } from './Cart';
 import SearchBar from './searchBar';
+import { SignIn, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { Button } from './ui/button';
 
 
 
@@ -39,7 +41,7 @@ const Navbar = () => {
     const [click, Setclick] = useState<boolean | null>(null)
 
     return (
-        <header className='mx-2 mt-2 md:mx-4 lg:mr-4 lg:mx-0 md:mt-5 border bg-white h-[75px] border-b border-[#56B280] border-opacity-20 z-[50] sticky top-2 md:top-5 ' >
+        <header className='backdrop-blur-sm bg-opacity-80 mx-2 mt-2 md:mx-4 lg:mr-4 lg:mx-0 md:mt-5 border bg-white h-[75px] border-b border-[#56B280] border-opacity-20 z-[50] sticky top-2 md:top-5 ' >
             <div className='2xl:max-w-[1280px] w-[95%] lg:max-w-screen h-full mx-auto flex justify-between items-center'>
                 <span className={`text-[20px] sm:text-[25px] md:text-[30px] font-medium tracking-[9%] text-[#4A1D1F] ${poppins.className} uppercase truncate`}>
                     Jess bakers
@@ -81,11 +83,17 @@ const Navbar = () => {
 
                 </nav>
                 <div className='w-auto gap-3 lg:gap-31 h-[45px] xl:w-[376px] flex justify-between items-center ' >
-                    <SearchBar close={close} Setclose={Setclose}/>
+                    <SearchBar close={close} Setclose={Setclose} />
                     {!close && <>
-                        <span className='flex justify-center items-center w-[25px]  sm:w-[34px] sm:h-[34px]'>
-                            <AvatarIcon className='w-[30px] h-[30px] text-[#272727]' />
-                        </span>
+                        <SignedIn>
+
+                            <span className='flex justify-center items-center w-[25px]  sm:w-[34px] sm:h-[34px]'>
+                                {/* <AvatarIcon className='w-[30px] h-[30px] text-[#272727]' /> */} <UserButton />
+                            </span>
+                        </SignedIn>
+                        <SignedOut>
+                           <SignInButton><Button variant="outline" className=" flex justify-center items-center w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] p-0" ><LogInIcon className="w-[25px] h-[25px] text-[#272727]"></LogInIcon></Button></SignInButton>
+                        </SignedOut>
                         <span className='flex justify-center items-center w-[25px] sm:w-[34px] sm:h-[34px] cursor-pointer'>
                             <Cart />
                         </span>
