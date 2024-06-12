@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Search } from 'lucide-react'
 import { Input } from './ui/input'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams,redirect } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime'
 const SearchBar = ({ close, Setclose }: { close: boolean, Setclose: (callback: (prev: boolean) => boolean) => void }) => {
@@ -19,11 +19,10 @@ const SearchBar = ({ close, Setclose }: { close: boolean, Setclose: (callback: (
         }
         else {
             params.delete('item')
-            Route.refresh();
+            // redirect("/menu") //why its not redirecting to "menu" route and on the other hand when i use this func query be delete nhi hoti URL say.
+            Route.replace(`/menu`)
         }
         Route.replace(`/menu?${params.toString()}`)
-        console.log(params);
-        console.log(params.toString());
     }, 300)
     return (
         <div className='xl:w-[251px] h-full flex justify-between items-center'>

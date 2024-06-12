@@ -15,7 +15,7 @@ const AddtoCart = ({ Item }: { Item: Iproduct }) => {
     };
 
     const { toast } = useToast()
-    const { addItem, incrementItem, decrementItem, cartDetails } = useShoppingCart()
+    const { addItem, incrementItem, decrementItem, cartDetails,checkoutSingleItem } = useShoppingCart()
     const cartItem: ICartProduct = {
         name: Item.name,
         description: "i will add later on",
@@ -40,12 +40,13 @@ const AddtoCart = ({ Item }: { Item: Iproduct }) => {
 
 
             <Button className="w-full bg-[#4A1D1F]" onClick={() => {
-                addItem(cartItem, { count: 0 });
+                addItem(cartItem, { count: 1, product_metadata:{type:`${cartItem.category}`},price_metadata:{price:cartItem.price  } });
                 toast({
                     description: "Item is added successfully",
                     variant:"destructive",
                     duration:2000
-                })
+                });
+          
             }}>Add to Cart</Button>
 
             {/* </div> */}

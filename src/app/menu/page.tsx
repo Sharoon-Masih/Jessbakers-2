@@ -1,8 +1,6 @@
 import { client } from '../../../sanity/lib/client';
 import { Iproduct } from '@/lib/interfaces';
 import ItemCard from '@/components/itemCard';
-import Rerender from '@/components/re-render';
-import { revalidatePath } from 'next/cache';
 import { Suspense } from 'react';
 import CardSkeleton from '@/components/cardSkeleton';
 
@@ -38,18 +36,20 @@ const Page = async ({ searchParams }: { searchParams: { item: string } }) => {
     const SearchData: Iproduct[] = await getSearchData();
     const categoryData: { name: string, _id: string }[] = await getCategoryData()
 
-    if (!searchParams.item) {
-        revalidatePath("/menu")
-    }
 
-    function filterBycategoryChars(AllProduct: Iproduct[], searchItem: string) {
-        let searchItemToLowerCase = searchItem?.toLowerCase();
-        return AllProduct.filter((item) => item.category.toLowerCase().startsWith(searchItemToLowerCase))
+    // function filterBycategoryChars(AllProduct: Iproduct[], searchItem: string) {
+    //     let searchItemToLowerCase = searchItem?.toLowerCase();
+    //     return AllProduct.filter((item) => item.category.toLowerCase().startsWith(searchItemToLowerCase))
 
-    }
+    // }
     function filterByStartingChars(AllProduct: Iproduct[], searchItem: string,) {
         let searchItemToLowerCase = searchItem?.toLowerCase();
-        return AllProduct.filter((item) => item.name.toLowerCase().startsWith(searchItemToLowerCase) || item.category.toLowerCase().startsWith(searchItemToLowerCase) || item.name.toLowerCase().split(" ").find((val) => val.startsWith(searchItemToLowerCase)))
+
+        // return AllProduct.filter((item) => item.name.toLowerCase().startsWith(searchItemToLowerCase) || item.category.toLowerCase().startsWith(searchItemToLowerCase) || item.name.toLowerCase().split(" ").find((val) => val.startsWith(searchItemToLowerCase))) 
+
+        //before i was using the above logic for dynamic searching like kay user koi be alphabet put kray or phr uss alphabet ki base pa result ajay chahay wo ek single letter hi kiu na ho , so for that logic now i am using the "includes()" method.
+
+        return AllProduct.filter((item) => item.name.toLowerCase().includes(searchItemToLowerCase) || item.category.toLowerCase().includes(searchItemToLowerCase)) //here we are filtering by using includes() method of array which return true even if single character matches in the string, it will not consider spaces.
 
     }
 
@@ -65,10 +65,10 @@ const Page = async ({ searchParams }: { searchParams: { item: string } }) => {
 
                     </div> </div>) :
                     <Suspense fallback={<CardSkeleton />}>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>
-                        {searchParams.item && filterByStartingChars(SearchData, searchParams.item).map((Item) => <ItemCard Item={Item} key={Item._id} />)}
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>
+                            {searchParams.item && filterByStartingChars(SearchData, searchParams.item).map((Item) => <ItemCard Item={Item} key={Item._id} />)}
 
-                    </div></Suspense>
+                        </div></Suspense>
                 }
 
             </div>
