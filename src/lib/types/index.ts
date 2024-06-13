@@ -7,7 +7,18 @@ export type custSchemaType = {
     photo: string
 }
 
+export type addToCartSchemaType = {
+    name:string,
+    price:number,
+    description:string,
+    image:string,
+    sanityId:string,
+    currency:string,
+    slug:string,
+    category:string,
+    customer:string
 
+}
 //server action param
 export type deleteCustParams = {
     id: string

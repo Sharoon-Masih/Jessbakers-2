@@ -11,6 +11,7 @@ import { useShoppingCart } from "use-shopping-cart"
 import { TrashIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { useState } from "react"
+import OrderDetailForm from "./orderDetailForm"
 export function Cart() {
     const [noOfCartItem, SetnoOfCartItem] = useState<number>(0)
     const { removeItem, totalPrice, handleCartClick, shouldDisplayCart, cartCount, cartDetails, incrementItem, decrementItem } = useShoppingCart()
@@ -57,9 +58,10 @@ export function Cart() {
                             </div>
                             <p className="text-sm font-medium  text-[#4A1D1F] text-opacity-80 antialiased">Delivery charges will be 250</p>
                         </div>
-                        <Button className="w-full bg-[#4A1D1F]">Checkout</Button>
-
-                        <span>OR <span className="text-[#4A1D1F] text-opacity-100 text-base font-semibold  cursor-pointer" onClick={handleCartClick}>Continue shopping</span></span>
+                        <div className="w-full">
+                            <OrderDetailForm/>
+                        </div>
+                       <span>OR <span className="text-[#4A1D1F] text-opacity-100 text-base font-semibold  cursor-pointer" onClick={handleCartClick}>Continue shopping</span></span>
                     </div>
                 </div> : <div className="flex h-[96%] w-full justify-center items-center flex-col">
 

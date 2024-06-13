@@ -16,7 +16,7 @@ import { Button } from "./ui/button"
 import { useToast } from "./ui/use-toast"
 import AddtoCart from "./addtoCart"
 
-export function SingleItemCard({ children, Item, searchItem }: { children: ReactNode, Item: Iproduct, searchItem?: string }) {
+export function SingleItemCard({ children, Item, searchItem ,currentUserId}: { children: ReactNode, Item: Iproduct, searchItem?: string, currentUserId:string }) {
 
     const [isClick, SetisClick] = useState(false);
     // const {addItem}= useShoppingCart()
@@ -56,7 +56,7 @@ export function SingleItemCard({ children, Item, searchItem }: { children: React
 
 
                     </div>
-                    <AlertDialogCancel className="p-0  pb-3 border-none shadow-none lg:pb-0 lg:border  lg:shadow" ><AddtoCart Item={Item} /></AlertDialogCancel>
+                    <AlertDialogCancel className="p-0  pb-3 border-none shadow-none lg:pb-0 lg:border  lg:shadow" ><AddtoCart Item={Item} currentUserId={currentUserId}/></AlertDialogCancel>
                 </div>
 
             </AlertDialogContent>

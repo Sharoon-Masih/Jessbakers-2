@@ -10,7 +10,7 @@ import { SingleItemCard } from './singleItem'
 import { usePathname, useRouter } from 'next/navigation'
 import CardSkeleton from './cardSkeleton'
 
-const ItemCard = ({ Item }: { Item: Iproduct, }) => {
+const ItemCard = ({ Item,currentUserId }: { Item: Iproduct,currentUserId:string }) => {
     const [isRating, SetisRating] = React.useState<boolean>(false)
     const Route = useRouter();
     const pathName = usePathname()
@@ -18,14 +18,13 @@ const ItemCard = ({ Item }: { Item: Iproduct, }) => {
 
         SetisRating(true)
     }, [])
-    console.log(Item);
     let total: number = 5
     let noOfFullStar: number = Math.ceil(Math.random() * (5 - 1) + 1)
     let emptyStarCount: number = total - noOfFullStar
     return (
         isRating ?
             <div >
-                <SingleItemCard Item={Item} >
+                <SingleItemCard Item={Item} currentUserId={currentUserId}>
                     <Card className="h-[370px]  w-[300px] hover:ring hover:ring-[#FBEDCD] hover:transition duration-100 ">
                         <CardContent className="flex flex-col aspect-square items-start justify-center p-6 gap-1">
                             <div className=" w-full rounded-sm border h-[250px] relative flex justify-center items-center">

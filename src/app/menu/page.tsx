@@ -1,6 +1,7 @@
 import { client } from '../../../sanity/lib/client';
 import { Iproduct } from '@/lib/interfaces';
 import ItemCard from '@/components/itemCard';
+import { auth } from '@clerk/nextjs/server';
 
 
 const getSearchData = async () => {
@@ -34,7 +35,9 @@ const getCategoryData = async () => {
 const Menu = async ({ searchParams }: { searchParams: { item: string } }) => {
     const SearchData: Iproduct[] = await getSearchData();
     const categoryData: { name: string, _id: string }[] = await getCategoryData()
-
+    
+    const {sessionClaims}=auth()
+    const currentUserId=sessionClaims?.userId as string
 
     // function filterBycategoryChars(AllProduct: Iproduct[], searchItem: string) {
     //     let searchItemToLowerCase = searchItem?.toLowerCase();
@@ -60,12 +63,12 @@ const Menu = async ({ searchParams }: { searchParams: { item: string } }) => {
                     {category.name}&apos;S
                 </span>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>
-                        {SearchData.filter((Item) => Item.category === category.name).map((Item) => <ItemCard Item={Item} key={Item._id} />)}
+                        {SearchData.filter((Item) => Item.category === category.name).map((Item) => <ItemCard Item={Item} key={Item._id} currentUserId={currentUserId}/>)}
 
                     </div> </div>) :
                     
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>
-                           {searchParams.item && filterByStartingChars(SearchData, searchParams.item).map((Item) =><ItemCard Item={Item}  key={Item._id}/> )}
+                           {searchParams.item && filterByStartingChars(SearchData, searchParams.item).map((Item) =><ItemCard Item={Item}  key={Item._id} currentUserId={currentUserId}/> )}
 
                         </div>
                 } 
