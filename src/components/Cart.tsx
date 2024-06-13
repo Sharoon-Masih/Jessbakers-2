@@ -10,8 +10,9 @@ import { MinusIcon, PlusIcon, ShoppingBasketIcon, ShoppingCartIcon } from "lucid
 import { useShoppingCart } from "use-shopping-cart"
 import { TrashIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
-import { useState } from "react"
+import { startTransition, useState } from "react"
 import OrderDetailForm from "./orderDetailForm"
+import { removeCartItem } from "@/lib/actions/cartItem.action"
 export function Cart() {
     const [noOfCartItem, SetnoOfCartItem] = useState<number>(0)
     const { removeItem, totalPrice, handleCartClick, shouldDisplayCart, cartCount, cartDetails, incrementItem, decrementItem } = useShoppingCart()
@@ -43,7 +44,7 @@ export function Cart() {
 
                                 <Button className=" w-[25px] h-[25px] p-1 " variant={"outline"} onClick={() => { incrementItem(Id.id, { count: 1 }); SetnoOfCartItem((prev) => prev + 1) }}><PlusIcon /></Button>
                             </div>
-                            <Button variant={"outline"} className="w-[30px] h-[30px] p-1" onClick={() => { removeItem(Id.id) }}><TrashIcon className="text-[#4A1D1F]" /></Button>
+                            <Button variant={"outline"} className="w-[30px] h-[30px] p-1" onClick={() => { removeItem(Id.id); startTransition(()=> {removeCartItem(Id.id)}) }}><TrashIcon className="text-[#4A1D1F]" /></Button>
                         </div>
 
                     </div>

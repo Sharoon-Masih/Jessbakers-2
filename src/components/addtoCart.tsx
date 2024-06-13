@@ -9,14 +9,14 @@ import { addToCart } from '@/lib/actions/cartItem.action';
 
 const AddtoCart = ({ Item,currentUserId}: { Item: Iproduct,currentUserId:string }) => {
 
-    const isEmpty = (obj: any) => {
-        return Object.keys(obj).length === 0 && obj.constructor === Object; //toh yeh func ko bnanay ki waja nicha explain ki hai, ab yeh iss tarh sa work kr rha haka yeh ek argument lega jokay any type hai basically w will pass it object ab wo jo "Object" class hai usme jo keys() ka method hai object ki keys ka ek array return krta hai or uspa humna ".length" ka method trhough yeh check kr ra hain agr returned array ki length 0 ho and "obj.constructor === Object" iska mtlb haka jo be argument get ho wo "Object" hi ho jokay hum ".constructor" ka through seekh rhay hain. 
-    };
+    // const isEmpty = (obj: any) => {
+    //     return Object.keys(obj).length === 0 && obj.constructor === Object; //toh yeh func ko bnanay ki waja nicha explain ki hai, ab yeh iss tarh sa work kr rha haka yeh ek argument lega jokay any type hai basically w will pass it object ab wo jo "Object" class hai usme jo keys() ka method hai object ki keys ka ek array return krta hai or uspa humna ".length" ka method trhough yeh check kr ra hain agr returned array ki length 0 ho and "obj.constructor === Object" iska mtlb haka jo be argument get ho wo "Object" hi ho jokay hum ".constructor" ka through seekh rhay hain. 
+    // };
 
     
     
     const { toast } = useToast()
-    const { addItem, incrementItem, decrementItem, cartDetails, checkoutSingleItem } = useShoppingCart()
+    const { addItem } = useShoppingCart()
     const cartItem: ICartProduct = {
         name: Item.name,
         description: "i will add later on",
