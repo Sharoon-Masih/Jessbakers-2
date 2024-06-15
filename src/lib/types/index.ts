@@ -7,7 +7,7 @@ export type custSchemaType = {
     photo: string
 }
 
-export type addToCartSchemaType = {
+export type     addToCartSchemaType = {
     name:string,
     price:number,
     description:string,
@@ -16,6 +16,9 @@ export type addToCartSchemaType = {
     currency:string,
     slug:string,
     category:string,
+    size:string,
+    qty:number
+    instruction?:string,
     customer:string
 
 }

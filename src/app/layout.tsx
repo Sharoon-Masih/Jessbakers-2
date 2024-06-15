@@ -6,6 +6,8 @@ import Footer from "@/components/footer"
 import Providers from "@/components/provider";
 import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import CartStateProvider from "./context/cartStateProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +33,7 @@ export default function RootLayout({
           termsPageUrl: "https://clerk.dev/terms",
         },
         variables: {
-          
+
           colorDanger: "red",
           colorSuccess: "green",
 
@@ -46,10 +48,12 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <Providers>
-            <Navbar />
+            <CartStateProvider>
+            <Navbar/>
             {children}
             <Toaster />
             <Footer />
+            </CartStateProvider>
           </Providers>
         </body>
       </html>

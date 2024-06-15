@@ -21,19 +21,20 @@ const getProductData = async () => {
      }`
 
   const fetchData = await client.fetch(query);
-  return fetchData 
+  return fetchData
 }
 
 export default async function Home() {
-  const ProductData:Iproduct[]=await getProductData()
+  const ProductData: Iproduct[] = await getProductData()
+  
   return (
     <main id='home'>
       <Hero />
-      <Quote/>
-      <Carousels ProductData={ProductData}/>
-      <About/>
-      <Contact/>
-      <Testimonial/>
+      <Quote />
+      <Carousels ProductData={ProductData} />
+      <About />
+      <Contact />
+      <Testimonial />
     </main>
   );
 }

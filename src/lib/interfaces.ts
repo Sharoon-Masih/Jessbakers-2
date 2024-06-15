@@ -35,6 +35,8 @@ export interface ICartProduct {
     id:string,
     currency:string,
     slug:string,
+    size?:string,
+    instruction?:string,
     category:string,
     price_id?:string
 

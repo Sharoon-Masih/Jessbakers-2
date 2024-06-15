@@ -10,17 +10,17 @@ import { ReactNode, useState } from "react"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { Textarea } from "./ui/textarea"
-import { XMarkIcon, PlusIcon, MinusIcon } from "@heroicons/react/24/outline"
+import { XMarkIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
-import { Button } from "./ui/button"
-import { useToast } from "./ui/use-toast"
 import AddtoCart from "./addtoCart"
 
-export function SingleItemCard({ children, Item, searchItem ,currentUserId}: { children: ReactNode, Item: Iproduct, searchItem?: string, currentUserId:string }) {
+
+export function SingleItemCard({ children, Item, _searchItem, currentUserId }: { children: ReactNode, Item: Iproduct, _searchItem?: string, currentUserId: string }) {
 
     const [isClick, SetisClick] = useState(false);
+    const [size, Setsize] = useState('medium')
     // const {addItem}= useShoppingCart()
-    
+    console.log(size);
 
     return (
 
@@ -43,20 +43,22 @@ export function SingleItemCard({ children, Item, searchItem ,currentUserId}: { c
                     </div>
                         <div className="flex flex-col w-full gap-[10px]">
                             <div className="flex justify-between items-center w-full border-b rounded-lg">
-                                <Label className="flex items-center justify-center gap-2 text-[16px] text-[#272727] font-semibold py-2"><Input type="radio" name="size" className="w-5 h-5" value={"medium"} />Medium</Label><span className="text-[16px] text-[#272727] font-semibold ">{Item.price}</span>
+                                <Label className="flex items-center justify-center gap-2 text-[16px] text-[#272727] font-semibold py-2" onClick={() => { Setsize("medium") }}><Input type="radio" name="size" className="w-5 h-5" value={"medium"}  />Medium</Label><span className="text-[16px] text-[#272727] font-semibold ">{Item.price}</span>
                             </div>
                             <div className="flex justify-between items-center w-full border-b rounded-md ">
-                                <Label className="flex items-center justify-center gap-2 text-[16px] text-[#272727] font-semibold py-2"><Input type="radio" name="size" className="w-5 h-5" value={"large"} />Large</Label><span className="text-[16px] text-[#272727] font-semibold ">{Item.price}</span>
+                                <Label className="flex items-center justify-center gap-2 text-[16px] text-[#272727] font-semibold py-2" onClick={() => { Setsize("large") }} >
+                                    <Input type="radio" name="size" className="w-5 h-5" value={"large"} />Large</Label>
+                                    <span className="text-[16px] text-[#272727] font-semibold ">{Item.price}</span>
                             </div>
                             <div className="flex flex-col gap-2 my-2 ">
                                 <span className="text-[16px] text-[#272727] font-semibold">Special Instructions</span>
-                                <Textarea rows={5}></Textarea>
+                                <Textarea rows={5} ></Textarea>
                             </div>
                         </div>
 
 
                     </div>
-                    <AlertDialogCancel className="p-0  pb-3 border-none shadow-none lg:pb-0 lg:border  lg:shadow" ><AddtoCart Item={Item} currentUserId={currentUserId}/></AlertDialogCancel>
+                    <AlertDialogCancel className="p-0  pb-3 border-none shadow-none lg:pb-0 lg:border  lg:shadow" ><AddtoCart Item={Item} currentUserId={currentUserId} size={size} /></AlertDialogCancel>
                 </div>
 
             </AlertDialogContent>

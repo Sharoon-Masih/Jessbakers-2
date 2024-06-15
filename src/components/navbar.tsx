@@ -4,7 +4,7 @@ import { Poppins } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { NavItems } from '@/lib/const';
-import { ChevronsDown, ChevronsDownUp, ChevronsUpDown, LogIn, LogInIcon, Search, ShoppingCartIcon } from 'lucide-react';
+import { ChevronsDown, LogInIcon,  } from 'lucide-react';
 import { Input } from './ui/input';
 import { AvatarIcon } from '@radix-ui/react-icons';
 import { motion } from "framer-motion"
@@ -13,12 +13,14 @@ import { PhoneBar } from './phonebar';
 import { client } from '../../sanity/lib/client';
 import { Cart } from './Cart';
 import SearchBar from './searchBar';
-import { SignIn, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { Button } from './ui/button';
+import AuthProvider from '@/app/context/authProvider';
 
 
 
 export const poppins = Poppins({ weight: ["500", '600', '700', '800', '900'], style: "normal", subsets: ["latin"] })
+
 const Navbar = () => {
     const [categories, Setcategories] = useState<{ _id: string, name: string, "slug": string }[] | null>(null)
     useEffect(() => {
@@ -94,9 +96,13 @@ const Navbar = () => {
                         <SignedOut>
                            <SignInButton><Button variant="outline" className=" flex justify-center items-center w-[28px] h-[28px] sm:w-[34px] sm:h-[34px] p-0" ><LogInIcon className="w-[25px] h-[25px] text-[#272727]"></LogInIcon></Button></SignInButton>
                         </SignedOut>
+                       <AuthProvider> 
+                        <SignedIn>
                         <span className='flex justify-center items-center w-[25px] sm:w-[34px] sm:h-[34px] cursor-pointer'>
-                            <Cart />
+                            <Cart/>
                         </span>
+                        </SignedIn>
+                        </AuthProvider>
                         <div className='block lg:hidden'>
                             <PhoneBar />
                         </div>

@@ -1,22 +1,23 @@
 "use client"
 import React, { startTransition, useState } from 'react'
 import { Button } from './ui/button';
-import { useShoppingCart } from 'use-shopping-cart'
 import { ICartProduct, Iproduct } from '@/lib/interfaces';
 import { useToast } from './ui/use-toast';
 import { addToCart } from '@/lib/actions/cartItem.action';
+import { useAddToCart } from '@/app/context/cartStateContext';
 
 
-const AddtoCart = ({ Item,currentUserId}: { Item: Iproduct,currentUserId:string }) => {
+const AddtoCart = ({ Item, currentUserId, size }: { Item: Iproduct, currentUserId: string, size: string }) => {
 
     // const isEmpty = (obj: any) => {
     //     return Object.keys(obj).length === 0 && obj.constructor === Object; //toh yeh func ko bnanay ki waja nicha explain ki hai, ab yeh iss tarh sa work kr rha haka yeh ek argument lega jokay any type hai basically w will pass it object ab wo jo "Object" class hai usme jo keys() ka method hai object ki keys ka ek array return krta hai or uspa humna ".length" ka method trhough yeh check kr ra hain agr returned array ki length 0 ho and "obj.constructor === Object" iska mtlb haka jo be argument get ho wo "Object" hi ho jokay hum ".constructor" ka through seekh rhay hain. 
     // };
 
-    
-    
+
+    const { SetisAddToCart } = useAddToCart()!
     const { toast } = useToast()
-    const { addItem } = useShoppingCart()
+
+
     const cartItem: ICartProduct = {
         name: Item.name,
         description: "i will add later on",
@@ -41,14 +42,14 @@ const AddtoCart = ({ Item,currentUserId}: { Item: Iproduct,currentUserId:string 
 
 
             <Button className="w-full bg-[#4A1D1F]" onClick={() => {
-                addItem(cartItem, { count: 1, product_metadata: { type: `${cartItem.category}` }, price_metadata: { price: cartItem.price } });
+
+                SetisAddToCart((prev) => !prev);
                 toast({
                     description: "Item is added successfully",
                     variant: "destructive",
                     duration: 2000
                 });
-
-                startTransition(() => { addToCart({ ...cartItem, sanityId: cartItem.id, customer:currentUserId }) })
+                startTransition(() => { addToCart({ ...cartItem, sanityId: cartItem.id, customer: currentUserId, size: size, qty: 1 }) })
             }}>Add to Cart</Button>
 
             {/* </div> */}
