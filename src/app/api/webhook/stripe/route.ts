@@ -36,7 +36,7 @@ export async function POST(request: Request) { //here we define a POST method bc
         const listlineItems = await gettingSession.checkout.sessions.listLineItems(id,{
             expand:['data.price.product']
         })
-        console.log(listlineItems.data);
+        console.log(listlineItems.data[0].price?.product.toString());
         let orders;
         // const itemList=listlineItems.data.map((item)=> {
         //     const {metadata}=item.price?.product
