@@ -11,6 +11,7 @@ export interface Iorder extends Document {
         qty: number,
         cartItem_Id: ICartItem
     }[],
+    totalPrice:string,
     created_At: string,
     address: string,
     contact: string,
@@ -31,6 +32,7 @@ const cartItem_Id = new Schema({
 const orderSchema = new Schema({
     stripeId:{type:String,required:true},
     itemList: [cartItem_Id],
+    totalPrice:{type:String,required:true},
     created_At: { type: Date, required: true },
     address: { type: String, required: true },
     contact: { type: String, required: true },
