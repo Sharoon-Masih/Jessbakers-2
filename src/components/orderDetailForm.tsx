@@ -63,7 +63,6 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
             }
           },
           quantity: item.qty,
-          cartItem_id:item._id
         }
 
       )
