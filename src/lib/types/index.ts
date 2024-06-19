@@ -32,7 +32,7 @@ export type orderSchemaType = {
     // }[],
     stripeId:string,
     itemList:{id:string}[],
-    totalPrice:string,
+    totalPrice:number,
     created_At: string,
     address: string,
     contact: string,
@@ -51,9 +51,9 @@ export type itemListParams = {
             name: string,
             metadata:{
                 name: string,
-                price: string,
+                price: number,
                 size: string,
-                qty:string,
+                qty:number,
                 sanityId: string,
                 img: string
               }

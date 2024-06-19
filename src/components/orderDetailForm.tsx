@@ -60,7 +60,7 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
               metadata: {
                 name: item.name,
                 price: item.price,
-                size: item.size,
+                size: item.size!,
                 qty:item.qty,
                 sanityId: item.sanityId,
                 img: item.image

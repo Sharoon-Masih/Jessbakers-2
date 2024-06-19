@@ -46,7 +46,7 @@ export async function POST(request: Request) { //here we define a POST method bc
         const order = { //then here we created a obj named as order and assign the above values to this obj properties
             stripeId: id,
             itemList: [{ id: "73867419824001640fwe33" }],
-            totalPrice: (amount_total! / 100).toString() ?? '',
+            totalPrice: (amount_total! / 100),
             created_At: new Date().toLocaleString(),
             address: metadata?.address ?? '',
             contact: metadata?.contact ?? '',
