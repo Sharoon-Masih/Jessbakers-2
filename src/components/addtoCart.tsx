@@ -5,6 +5,7 @@ import { ICartProduct, Iproduct } from '@/lib/interfaces';
 import { useToast } from './ui/use-toast';
 import { addToCart } from '@/lib/actions/cartItem.action';
 import { useAddToCart } from '@/app/context/cartStateContext';
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
 
 const AddtoCart = ({ Item, currentUserId, size }: { Item: Iproduct, currentUserId: string, size: string }) => {
@@ -40,7 +41,7 @@ const AddtoCart = ({ Item, currentUserId, size }: { Item: Iproduct, currentUserI
                     isEmpty(cartDetails) && <Button className="w-full bg-[#4A1D1F]" onClick={() => { addItem(cartItem) }}>Add to Cart</Button>
                 } */}
 
-
+            <SignedIn>
             <Button className="w-full bg-[#4A1D1F]" onClick={() => {
 
                 SetisAddToCart((prev) => !prev);
@@ -51,7 +52,12 @@ const AddtoCart = ({ Item, currentUserId, size }: { Item: Iproduct, currentUserI
                 });
                 startTransition(() => { addToCart({ ...cartItem, sanityId: cartItem.id, customer: currentUserId, size: size, qty: 1 }) })
             }}>Add to Cart</Button>
-
+            </SignedIn>
+            <SignedOut>
+               <SignInButton>
+               <Button className="w-full bg-[#4A1D1F]">Please Sign-in</Button>
+                </SignInButton> 
+            </SignedOut>
             {/* </div> */}
         </div>
     )

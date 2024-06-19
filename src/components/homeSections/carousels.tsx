@@ -17,6 +17,7 @@ import Image from "next/image"
 import { HiOutlineStar, HiStar } from "react-icons/hi2"
 import { useEffect } from "react"
 import Link from "next/link"
+import { useSession } from "@clerk/nextjs"
 
 
 export function Carousels({ ProductData }: { ProductData: Iproduct[] }) {
@@ -25,7 +26,9 @@ export function Carousels({ ProductData }: { ProductData: Iproduct[] }) {
     const [isChangeCard, SetisChangeCard] = React.useState<number | null>(null)
     const pathName = usePathname()
     const Route = useRouter()
-useEffect(() => {
+    const { session } = useSession()
+    const userId = session?.user.publicMetadata.userId
+    useEffect(() => {
 
         SetisRating(true)
     }, [])
@@ -48,7 +51,7 @@ useEffect(() => {
                             let emptyStarCount: number = total - noOfFullStar
                             return <CarouselItem key={index} className="basis-[250px] sm:basis-[300px] relative ">
                                 <div className="p-1">
-                                    <div><Link href={`/menu#${Item.category}`}>
+                                    <div><SingleItemCard Item={Item} currentUserId={userId as string}>
 
                                         <Card className="h-[370px] hover:ring hover:ring-[#FBEDCD] hover:transition duration-100">
                                             <CardContent className="flex flex-col aspect-square items-start justify-center p-6 gap-1">
@@ -61,7 +64,7 @@ useEffect(() => {
                                                 }{emptyStarCount !== 0 && Array.from({ length: emptyStarCount }).map((_, idx) => <HiOutlineStar className="text-yellow-500" key={idx} />)}</div>
                                             </CardContent>
                                         </Card>
-                                        </Link>
+                                    </SingleItemCard>
                                     </div>
                                 </div>
                             </CarouselItem>

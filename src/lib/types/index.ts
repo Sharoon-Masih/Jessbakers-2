@@ -7,26 +7,56 @@ export type custSchemaType = {
     photo: string
 }
 
-export type     addToCartSchemaType = {
-    name:string,
-    price:number,
-    description:string,
-    image:string,
-    sanityId:string,
-    currency:string,
-    slug:string,
-    category:string,
-    size:string,
-    qty:number
-    instruction?:string,
-    customer:string
+export type addToCartSchemaType = {
+    name: string,
+    price: number,
+    description: string,
+    image: string,
+    sanityId: string,
+    currency: string,
+    slug: string,
+    category: string,
+    size: string,
+    qty: number
+    instruction?: string,
+    customer: string
 
+}
+
+export type orderSchemaType = {
+    // itemList?: {
+    //     itemName: string,
+    //     price: string,
+    //     qty: number,
+    //     cartItem_Id: string
+    // }[],
+    stripeId:string,
+    itemList:string[],
+    created_At: string,
+    address: string,
+    contact: string,
+    customer: string,
 }
 //server action param
 export type deleteCustParams = {
     id: string
 }
 
+export type itemListParams = {
+    price_data: {
+        currency: string;
+        unit_amount: number;
+        product_data: {
+            name: string,
+            metadata:{
+                cartItem_id:string
+              }
+        };
+    };
+    quantity: number;
+
+
+}
 //handle error func
 export function handleError(error: unknown) {
     console.log(error);

@@ -15,8 +15,9 @@ import Image from "next/image"
 import AddtoCart from "./addtoCart"
 
 
-export function SingleItemCard({ children, Item, _searchItem, currentUserId }: { children: ReactNode, Item: Iproduct, _searchItem?: string, currentUserId: string }) {
+export function SingleItemCard({ children, Item, currentUserId }: { children: ReactNode, Item: Iproduct, _searchItem?: string, currentUserId: string }) {
 
+    
     const [isClick, SetisClick] = useState(false);
     const [size, Setsize] = useState('medium')
     // const {addItem}= useShoppingCart()

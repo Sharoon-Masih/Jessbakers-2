@@ -11,17 +11,19 @@ import { useShoppingCart } from "use-shopping-cart"
 import { TrashIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import { startTransition, useEffect, useState } from "react"
-import OrderDetailForm from "./orderDetailForm"
 import { getAllCartItemByUserId, itemQtyDec, itemQtyInc, removeCartItem } from "@/lib/actions/cartItem.action"
 import { ICartItem } from "@/lib/database/models/cartItem.model"
-import { useAuth, useSession } from "@clerk/nextjs"
+import { useSession } from "@clerk/nextjs"
 import { useAddToCart } from "@/app/context/cartStateContext"
 import CartSkeleton from "./cartSkeleton"
+import OrderCheckout from "./orderDetailForm"
 
 
 export function Cart() {
-    const {  totalPrice, handleCartClick, shouldDisplayCart} = useShoppingCart()
+    const { totalPrice, handleCartClick, shouldDisplayCart } = useShoppingCart()
+
     const [cartItems, SetcartItems] = useState<ICartItem[]>([])
+
     const { isAddToCart, SetisAddToCart } = useAddToCart()! //yeh jo isAddToCart hai iski basis pa useEffect chlta hai like jab be iski value update hogi useEffect new Data fetch krega Db say and kiu kay yeh global state variable hai and jo provider hai wo humna layout ma rakha hai toh iss lia withIn app kahin par be iski value hum update krsktay hain or wo UI pa reflect kregi.
 
     const { session, isLoaded } = useSession() //in client we cant use auth() obj, therefore we have used useSession() provided by clerk for client component.
@@ -38,7 +40,7 @@ export function Cart() {
 
             getCartItem()
         }
-        
+
     }, [isLoaded, isAddToCart]) //or yaha par on the basis of isLoaded useEffect run krega.
 
 
@@ -95,7 +97,7 @@ export function Cart() {
                 <SheetHeader>
                     <SheetTitle className="text-[#4A1D1F] ">Your Cart</SheetTitle>
                 </SheetHeader>
-                {!isLoaded ? <CartSkeleton/> :cartItems && cartItems.length !== 0 ? < div className="flex h-[96%] w-full justify-between flex-col "><div className="w-full flex flex-col divide-y divide-[#4A1D1F] divide-opacity-60 pt-[30px] h-[75%] overflow-y-auto ">  {cartItems.map((Id) => <div key={Id.id} className="flex gap-3 py-3 justify-between items-center">
+                {!isLoaded ? <CartSkeleton /> : cartItems && cartItems.length !== 0 ? < div className="flex h-[96%] w-full justify-between flex-col "><div className="w-full flex flex-col divide-y divide-[#4A1D1F] divide-opacity-60 pt-[30px] h-[75%] overflow-y-auto ">  {cartItems.map((Id) => <div key={Id.id} className="flex gap-3 py-3 justify-between items-center">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border-2 border-[#4A1D1F]">
                         <Image src={Id.image as string} width={100} height={100} alt={Id.name} />
                     </div>
@@ -128,7 +130,7 @@ export function Cart() {
                             <p className="text-sm font-medium  text-[#4A1D1F] text-opacity-80 antialiased">Delivery charges will be 250</p>
                         </div>
                         <div className="w-full">
-                            <OrderDetailForm />
+                            <OrderCheckout cartItems={cartItems} currentUserId={userId as string} />
                         </div>
                         <span>OR <span className="text-[#4A1D1F] text-opacity-100 text-base font-semibold  cursor-pointer" onClick={handleCartClick}>Continue shopping</span></span>
                     </div>

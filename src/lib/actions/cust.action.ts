@@ -1,6 +1,8 @@
 'use server'
 
+import { promise } from "zod";
 import { connectToDb } from "../database";
+import CartItem from "../database/models/cartItem.model";
 import Customer, { Icustomer } from "../database/models/cust.model";
 import { custSchemaType, deleteCustParams, handleError } from "../types";
 
@@ -46,6 +48,11 @@ export async function deleteCustomer(deleteCustomer: deleteCustParams) {
         if(!customerToDelete){
             throw new Error ("customer not found")
         }
+        // const isCartItem= await CartItem.find({customer:deleteCustomer.id})
+     
+          await CartItem.findOneAndDelete({customer: deleteCustomer.id})
+         
+
         const customerDeleted = await Customer.findByIdAndDelete(customerToDelete._id)
         return  customerDeleted ? JSON.parse(JSON.stringify(customerToDelete)) : null
 
