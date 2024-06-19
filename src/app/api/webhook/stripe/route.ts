@@ -41,7 +41,7 @@ export async function POST(request: Request) { //here we define a POST method bc
         })
         // console.log(lineItems);
         console.log(listlineItems.object);
-        console.log(listlineItems.data);
+        console.log(listlineItems.data[0].price?.product);
 
         const order = { //then here we created a obj named as order and assign the above values to this obj properties
             stripeId: id,

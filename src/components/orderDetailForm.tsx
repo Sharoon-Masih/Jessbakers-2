@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { ICartItem } from "@/lib/database/models/cartItem.model"
-import {  orderSchemaType } from "@/lib/types"
+import { orderSchemaType } from "@/lib/types"
 import { checkoutOrder, createOrder } from "@/lib/actions/order.acion"
 import { loadStripe } from '@stripe/stripe-js'
 import { useEffect } from "react"
@@ -57,8 +57,13 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
             unit_amount: item.price * 100,  //converting it in cents bcuz these price are going to stripe checkout session.
             product_data: {
               name: item.name,
-              metadata:{
-                cartItem_id:item._id
+              metadata: {
+                name: item.name,
+                price: item.price,
+                size: item.size,
+                qty:item.qty,
+                sanityId: item.sanityId,
+                img: item.image
               }
             }
           },
@@ -69,7 +74,7 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
     })
 
 
-    const checkoutOrderData = await checkoutOrder(itemList, currentUserId,values)
+    const checkoutOrderData = await checkoutOrder(itemList, currentUserId, values)
 
     // const newOrder: orderSchemaType = {
     //   // itemList: itemList,

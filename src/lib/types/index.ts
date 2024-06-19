@@ -50,7 +50,12 @@ export type itemListParams = {
         product_data: {
             name: string,
             metadata:{
-                cartItem_id:string
+                name: string,
+                price: string,
+                size: string,
+                qty:string,
+                sanityId: string,
+                img: string
               }
         };
     };
