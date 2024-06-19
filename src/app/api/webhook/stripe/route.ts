@@ -40,9 +40,20 @@ export async function POST(request: Request) { //here we define a POST method bc
             expand:['data.price.product']
         })
         // console.log(lineItems);
-        console.log(listlineItems.object);
-        console.log(listlineItems.data[0].price?.product);
-
+        let orders;
+        const itemList=listlineItems.data.map((item)=> {
+            return(
+                orders={
+                    itemName:item.price?.product,
+                    // price,
+                    // qty,
+                    // sanityId,
+                    // size,
+                    // img
+                }
+            )
+        })
+        console.log(itemList);
         const order = { //then here we created a obj named as order and assign the above values to this obj properties
             stripeId: id,
             itemList: [{ id: "73867419824001640fwe33" }],
