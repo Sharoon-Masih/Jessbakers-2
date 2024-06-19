@@ -7,8 +7,16 @@ const OrderCard = () => {
         <strong className=''>Order #67247238</strong>
         <p className='text-[#272727] font-medium opacity-70 text-sm'>{new Date().toLocaleString()}</p>
     </div>
-    <div>
-
+    <div className='grid grid-cols-2 gap-5 w-full items-center'>
+       <div className='w-[100px] h-[100px] rounded-full bg-white overflow-hidden'></div>
+       <div className='flex flex-col gap-1 relative'>
+        <h1 className='line-clamp-1 font-semibold text-base'>Fudge Cake</h1>
+        <p className='line-clamp-1 text-[#272727] font-medium opacity-70 text-sm'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, hic!</p>
+        <div className='flex justify-between w-full'>
+         <span className='text-sm font-semibold text-[#272727]'>98$</span>
+         <span className='text-sm font-semibold text-[#272727]'>Qty:1</span>
+        </div>
+       </div>
     </div>
     <div></div>
     </div>
