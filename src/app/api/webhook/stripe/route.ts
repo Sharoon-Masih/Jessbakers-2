@@ -38,7 +38,7 @@ export async function POST(request: Request) { //here we define a POST method bc
         // })
         const listlineItems = await gettingSession.checkout.sessions.listLineItems(id)
         // console.log(lineItems);
-        console.log(listlineItems);
+        console.log(listlineItems.object);
         console.log(listlineItems.data);
 
         const order = { //then here we created a obj named as order and assign the above values to this obj properties
