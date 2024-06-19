@@ -12,7 +12,7 @@ import { orderDetailType } from "@/components/orderDetailForm";
 
 export async function checkoutOrder(itemList: itemListParams[], currentUserId: string, values: orderDetailType) {
 
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
+ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
     try {
 

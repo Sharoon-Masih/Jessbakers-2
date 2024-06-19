@@ -28,16 +28,16 @@ export async function POST(request: Request) { //here we define a POST method bc
     // Get the ID and type
     const eventType = event.type //now here we assigning the type of event that occur to "eventType" variable
 
-    const gettingSession= new Stripe(process.env.STRIPE_WEBHOOK_SECRET as string)
+    const gettingSession= new Stripe(process.env.STRIPE_SECRET_KEY as string)
     // CREATE
     if (eventType === 'checkout.session.completed') { //here we are implementing the condition that if event is of type "checkout.session.completed" so then execute the below code, in simple words that if the eventType is = checkout.session.completed then our order will be save in Db through the createOrder() server action.
         const { id, amount_total, metadata, line_items } = event.data.object //now here retrieving the data from ".object" like the stripeId, amount_total of product for which this checkout session is created and the metadata of product.
 
-        const lineItems = await gettingSession.checkout.sessions.retrieve(id,{
-            expand:['line_items']
-        })
+        // const lineItems = await gettingSession.checkout.sessions.retrieve(id,{
+        //     expand:['line_items']
+        // })
         const listlineItems = await gettingSession.checkout.sessions.listLineItems(id)
-        console.log(lineItems);
+        // console.log(lineItems);
         console.log(listlineItems);
         console.log(listlineItems.data);
 
