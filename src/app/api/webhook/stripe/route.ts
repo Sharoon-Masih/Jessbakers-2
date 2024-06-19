@@ -33,10 +33,11 @@ export async function POST(request: Request) { //here we define a POST method bc
     if (eventType === 'checkout.session.completed') { //here we are implementing the condition that if event is of type "checkout.session.completed" so then execute the below code, in simple words that if the eventType is = checkout.session.completed then our order will be save in Db through the createOrder() server action.
         const { id, amount_total, metadata, line_items } = event.data.object //now here retrieving the data from ".object" like the stripeId, amount_total of product for which this checkout session is created and the metadata of product.
 
-        const listlineItems = await gettingSession.checkout.sessions.retrieve(id,{
-            expand:['line_items']
-        })
-        console.log(listlineItems);
+        // const listlineItems = await gettingSession.checkout.sessions.listLineItems(id,{
+        //     expand:['data.price.product']
+        // })
+        const listlineItems = await gettingSession.products.list()
+        console.log(listlineItems.data);
         let orders;
         // const itemList=listlineItems.data.map((item)=> {
         //     const {metadata}=item.price?.product
