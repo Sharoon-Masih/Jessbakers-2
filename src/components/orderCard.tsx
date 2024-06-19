@@ -19,7 +19,11 @@ const OrderCard = () => {
                 </div>
             </div>
             <div className='flex justify-between border-t border-opacity-5 pt-3'>
-            
+            <div className='flex flex-col gap-1'>
+              <p className='text-[#272727] font-medium opacity-70 text-sm'>#2 items</p>
+              <span className='font-semibold text-base'>total price</span>
+            </div>
+                <p className='line-clamp-1 text-[#272727] font-medium opacity-70 text-sm'>will be deliver at 2:00pm</p>
             </div>
         </div>
     )
