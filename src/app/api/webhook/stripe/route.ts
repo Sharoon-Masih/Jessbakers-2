@@ -37,7 +37,7 @@ export async function POST(request: Request) { //here we define a POST method bc
         //     expand:['line_items']
         // })
         const listlineItems = await gettingSession.checkout.sessions.listLineItems(id,{
-            expand:['line_items.data.price.product']
+            expand:['data.price.product']
         })
         // console.log(lineItems);
         console.log(listlineItems.object);
