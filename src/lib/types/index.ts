@@ -31,7 +31,7 @@ export type orderSchemaType = {
     //     cartItem_Id: string
     // }[],
     stripeId:string,
-    itemList:string[],
+    itemList:{id:string}[],
     created_At: string,
     address: string,
     contact: string,
