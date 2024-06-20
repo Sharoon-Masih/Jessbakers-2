@@ -11,7 +11,7 @@ const OrderCard = async ({orderData}:{orderData:Iorder}) => {
                 <p className='text-[#272727] font-medium opacity-70 text-sm'>{orderData.created_At}</p>
             </div>
             <div className='flex flex-col gap-3 divide-y flex-1 justify-start overflow-auto'>
-              {orderData.orderedProduct.itemList.map((itemData) =>  <div className='flex justify-between gap-5 w-full items-center pt-3'>
+              {orderData.orderedProduct.itemList.map((itemData) =>  <div  className='flex justify-between gap-5 w-full items-center pt-3' key={itemData.itemName}>
                     <div className='w-[80px] h-[80px] rounded-full bg-white overflow-hidden'></div>
                     <div className='flex flex-col gap-1 relative flex-1'>
                         <h1 className='line-clamp-1 font-semibold text-base'>{itemData.itemName}</h1>
