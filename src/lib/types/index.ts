@@ -50,6 +50,7 @@ export type ItemSchemaType = {
 }
 export type orderedProductSchemaType = {
     itemList:ItemSchemaType[],
+    created_At:string
     customer: string
 }
 //server action param

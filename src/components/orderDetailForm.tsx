@@ -92,6 +92,7 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
 
     const orderedProduct: orderedProductSchemaType = {
       itemList: itemInCartList,
+      created_At:new Date().toLocaleString(),
       customer: currentUserId
     }
 

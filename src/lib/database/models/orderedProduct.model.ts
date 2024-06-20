@@ -11,6 +11,7 @@ export interface IorderedProduct {
         img: string
 
     }[],
+    created_At:string,
     customer: string
 }
 
@@ -24,6 +25,7 @@ const ItemSchema = new Schema({
 
 const orderedProductSchema = new Schema({
     itemList: [ItemSchema],
+    created_At:{type:Date, required:true},
     customer: { type: Schema.Types.ObjectId, ref: "Customer" }
 })
 

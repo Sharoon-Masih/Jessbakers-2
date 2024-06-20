@@ -22,7 +22,7 @@ import OrderCheckout from "./orderDetailForm"
 export function Cart() {
     const { totalPrice, handleCartClick, shouldDisplayCart } = useShoppingCart()
 
-    const [cartItems, SetcartItems] = useState<ICartItem[]>([])
+    const [cartItems, SetcartItems] = useState<ICartItem[] | null>(null)
 
     const { isAddToCart, SetisAddToCart } = useAddToCart()! //yeh jo isAddToCart hai iski basis pa useEffect chlta hai like jab be iski value update hogi useEffect new Data fetch krega Db say and kiu kay yeh global state variable hai and jo provider hai wo humna layout ma rakha hai toh iss lia withIn app kahin par be iski value hum update krsktay hain or wo UI pa reflect kregi.
 
@@ -53,7 +53,7 @@ export function Cart() {
     }
     function handleItemQty(id: string, btn: "inc" | "dec") {
         if (btn === "inc") {
-            const modifiedItems = cartItems.map((item) => { //yaha simply hum sb array element ko map kr rhay hain jis element ki id match kr rhi hai uski "qty" ko modify kr rhay hain bs and uss item ko return kr rhay hain. 
+            const modifiedItems = cartItems?.map((item) => { //yaha simply hum sb array element ko map kr rhay hain jis element ki id match kr rhi hai uski "qty" ko modify kr rhay hain bs and uss item ko return kr rhay hain. 
                 if (item.sanityId === id) {
                     item.qty += 1
                     return item
@@ -63,11 +63,11 @@ export function Cart() {
                 }
             })
 
-            SetcartItems(modifiedItems)
+            SetcartItems(modifiedItems!)
 
         }
         else {
-            const modifiedItems = cartItems.map((item) => {
+            const modifiedItems = cartItems?.map((item) => {
                 if (item.sanityId === id) {
                     if (item.qty === 1) //yaha par agr qty already 1 hai toh phr product as it is return hojayegi.
                     {
@@ -82,7 +82,7 @@ export function Cart() {
                 }
             })
 
-            SetcartItems(modifiedItems)
+            SetcartItems(modifiedItems!)
 
         }
     }
@@ -97,7 +97,7 @@ export function Cart() {
                 <SheetHeader>
                     <SheetTitle className="text-[#4A1D1F] ">Your Cart</SheetTitle>
                 </SheetHeader>
-                {!isLoaded ? <CartSkeleton /> : cartItems && cartItems.length !== 0 ? < div className="flex h-[96%] w-full justify-between flex-col "><div className="w-full flex flex-col divide-y divide-[#4A1D1F] divide-opacity-60 pt-[30px] h-[75%] overflow-y-auto ">  {cartItems.map((Id) => <div key={Id.id} className="flex gap-3 py-3 justify-between items-center">
+                {!cartItems ? <CartSkeleton /> : cartItems && cartItems.length !== 0 ? < div className="flex h-[96%] w-full justify-between flex-col "><div className="w-full flex flex-col divide-y divide-[#4A1D1F] divide-opacity-60 pt-[30px] h-[75%] overflow-y-auto ">  {cartItems.map((Id) => <div key={Id.id} className="flex gap-3 py-3 justify-between items-center">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border-2 border-[#4A1D1F]">
                         <Image src={Id.image as string} width={100} height={100} alt={Id.name} />
                     </div>

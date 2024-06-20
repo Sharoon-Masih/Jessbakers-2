@@ -14,7 +14,8 @@ export interface Iorder extends Document {
         price: number,
         qty: number,
         desc: string,
-    },
+        img:string
+    }[],
     }
 
 }
