@@ -51,3 +51,22 @@ export async function createOrder(order: orderSchemaType) {
         handleError(error)
     }
 }
+
+export async function getAllOrders(currentUserId:string) {
+    
+    try {
+
+        await connectToDb()
+
+        const isCustomer= await Customer.findById(currentUserId)
+        if(!isCustomer){
+            throw new Error("customer does not exist")
+        }
+
+        const allOrders = await Order.find({customer:currentUserId})
+        
+        return allOrders ? JSON.parse(JSON.stringify(allOrders)) : null
+    } catch (error) {
+        handleError(error)
+    }
+}

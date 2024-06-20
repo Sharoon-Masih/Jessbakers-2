@@ -47,6 +47,7 @@ export type itemListParams = {
     price_data: {
         currency: string;
         unit_amount: number;
+        nickname:string,
         product_data: {
             name: string,
             metadata:{
