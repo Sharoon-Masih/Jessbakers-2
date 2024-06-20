@@ -17,7 +17,7 @@ export async function checkoutOrder(itemList: itemListParams[], currentUserId: s
     try {
 
         const session = await stripe.checkout.sessions.create({
-            line_items: itemList,
+            line_items:itemList,
             metadata: {
                 customer: currentUserId,
                 address: values.address,

@@ -56,7 +56,6 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
             currency: "usd",
             unit_amount: item.price * 100,  //converting it in cents bcuz these price are going to stripe checkout session.
             product_data: {
-              nickname:"27347",
               name: item.name,
               metadata: {
                 name: item.name,
