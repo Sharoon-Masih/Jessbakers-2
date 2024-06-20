@@ -28,16 +28,17 @@ export async function POST(request: Request) { //here we define a POST method bc
     // Get the ID and type
     const eventType = event.type //now here we assigning the type of event that occur to "eventType" variable
 
-    const gettingSession= new Stripe(process.env.STRIPE_SECRET_KEY as string)
+    const gettingSession= new Stripe(process.env.STRIPE_SECRET_KEY as string) //yaha par basically humay jo line_item ma porducts diya hain unko get krnay ka liya ek new instance create kr rhay hain of Stripe class, but remember secret key same hi rakhni hai.
     // CREATE
     if (eventType === 'checkout.session.completed') { //here we are implementing the condition that if event is of type "checkout.session.completed" so then execute the below code, in simple words that if the eventType is = checkout.session.completed then our order will be save in Db through the createOrder() server action.
         const { id, amount_total, metadata, line_items } = event.data.object //now here retrieving the data from ".object" like the stripeId, amount_total of product for which this checkout session is created and the metadata of product.
 
-        // const listlineItems = await gettingSession.checkout.sessions.listLineItems(id,{
-        //     expand:['data.price.product']
-        // })
-        const listlineItems = await gettingSession.products.list()
-        console.log(listlineItems.data);
+        const listlineItems = await gettingSession.checkout.sessions.listLineItems(id,{
+            expand:['data.price.product'] //yaha par expand iss liya kia hai bcuz agr expand nhi krega toh .product ma jo values hai unko dekh nhi payenga but abhi be wohi msla aa rha haka product ma values toh aa rhi hai but unko access nhi kr sktay.
+        }) //yaha par hum .listlineItems() ka method kay through sari product list le rhay hain
+        console.log(listlineItems.data[0].price?.product); //yaha product tk toh data mil rha hai but product ka andar jo data hai humay wo chaiya but wo nhi mil rha issi lia abhi hum isko comment out kr rhay hain.
+        console.log(listlineItems.data[0]); //yaha product tk toh data mil rha hai but product ka andar jo data hai humay wo chaiya but wo nhi mil rha issi lia abhi hum isko comment out kr rhay hain.
+
         let orders;
         // const itemList=listlineItems.data.map((item)=> {
         //     const {metadata}=item.price?.product
