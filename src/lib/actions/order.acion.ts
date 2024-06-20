@@ -1,6 +1,4 @@
 'use server'
-
-import { stripVTControlCharacters } from "util";
 import { connectToDb } from "../database";
 import CartItem from "../database/models/cartItem.model";
 import Customer from "../database/models/cust.model";
@@ -46,7 +44,7 @@ export async function createOrder(order: orderSchemaType) {
             throw new Error('customer does not exist')
         }
         const newOrder = await Order.create(order)
-        CartItem.deleteMany({ customer: order.customer })
+       await CartItem.deleteMany({ customer: order.customer })
         return JSON.parse(JSON.stringify(newOrder))
     } catch (error) {
         handleError(error)
@@ -64,7 +62,7 @@ export async function getAllOrders(currentUserId:string) {
             throw new Error("customer does not exist")
         }
 
-        const allOrders = await Order.find({customer:currentUserId}).populate({path:"orderedProduct",model:"orderedProduct", select:"_id itemList "})
+        const allOrders = await Order.find({customer:currentUserId}).populate({path:"orderedProduct",model:"OrderedProduct", select:"_id itemList "})
         
         return allOrders ? JSON.parse(JSON.stringify(allOrders)) : null
     } catch (error) {

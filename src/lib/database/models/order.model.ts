@@ -27,7 +27,7 @@ created_At: { type: Date, required: true },
 address: { type: String, required: true },
 contact: { type: String, required: true },
 customer: { type: Schema.Types.ObjectId, ref: "Customer" }, //type:Schema.Types.ObjectId iska mtlb hai Schema ka object ma jo types/datatype accept krskta hai wo ayengi or then usme further agay jo ObjectId wali type hai wo chaiya.
-orderedProduct: { type: Schema.Types.ObjectId, ref: "orderedProduct" }
+orderedProduct: { type: Schema.Types.ObjectId, ref: "OrderedProduct" }
 })
 
 const Order = models.Order || model("Order", orderSchema)

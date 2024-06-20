@@ -1,5 +1,4 @@
-import { model } from "mongoose";
-import { Schema, models } from "mongoose";
+import { Schema, models,model } from "mongoose";
 
 export interface IorderedProduct {
     _id: string,
@@ -23,12 +22,12 @@ const ItemSchema = new Schema({
     img: { type: String }
 })
 
-const orderedProductSchema = new Schema({
+const OrderedProductSchema = new Schema({
     itemList: [ItemSchema],
     created_At:{type:Date, required:true},
     customer: { type: Schema.Types.ObjectId, ref: "Customer" }
 })
 
-const OrderedProduct = models.orderedProduct || model("orderedProduct", orderedProductSchema)
+const OrderedProductModel = models.OrderedProduct || model("OrderedProduct", OrderedProductSchema)
 
-export default OrderedProduct
+export default OrderedProductModel;
