@@ -36,7 +36,7 @@ export async function POST(request: Request) { //here we define a POST method bc
         const listlineItems = await gettingSession.checkout.sessions.listLineItems(id,{
             expand:['data.price.product'] //yaha par expand iss liya kia hai bcuz agr expand nhi krega toh .product ma jo values hai unko dekh nhi payenga but abhi be wohi msla aa rha haka product ma values toh aa rhi hai but unko access nhi kr sktay.
         }) //yaha par hum .listlineItems() ka method kay through sari product list le rhay hain
-        console.log(listlineItems.data[0].price?.nickname); //yaha product tk toh data mil rha hai but product ka andar jo data hai humay wo chaiya but wo nhi mil rha issi lia abhi hum isko comment out kr rhay hain.
+        console.log(listlineItems.data[0].price?.product); //yaha product tk toh data mil rha hai but product ka andar jo data hai humay wo chaiya but wo nhi mil rha issi lia abhi hum isko comment out kr rhay hain.
         console.log(listlineItems); //yaha product tk toh data mil rha hai but product ka andar jo data hai humay wo chaiya but wo nhi mil rha issi lia abhi hum isko comment out kr rhay hain.
 
         let orders;
@@ -56,12 +56,12 @@ export async function POST(request: Request) { //here we define a POST method bc
         // console.log(itemList);
         const order = { //then here we created a obj named as order and assign the above values to this obj properties
             stripeId: id,
-            itemList: [{ id: "73867419824001640fwe33" }],
             totalPrice: (amount_total! / 100),
             created_At: new Date().toLocaleString(),
             address: metadata?.address ?? '',
             contact: metadata?.contact ?? '',
-            customer: metadata?.customer ?? ''
+            customer: metadata?.customer ?? '',
+            orderedProduct:metadata?.orderedProduct ?? ''
         }
 
         const newOrder = await createOrder(order) //here simply invoking the server action and passing order obj to it.

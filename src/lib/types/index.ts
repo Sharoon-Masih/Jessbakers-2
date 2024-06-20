@@ -30,13 +30,31 @@ export type orderSchemaType = {
     //     qty: number,
     //     cartItem_Id: string
     // }[],
-    stripeId:string,
-    itemList:{id:string}[],
-    totalPrice:number,
+    stripeId: string,
+    totalPrice: number,
     created_At: string,
     address: string,
     contact: string,
     customer: string,
+    orderedProduct: string
+}
+
+export type ItemSchemaType = {
+
+    itemName: string,
+    price: number,
+    qty: number,
+    desc: string,
+
+}
+export type orderedProductSchemaType = {
+    itemList: {
+        itemName: string,
+        price: number,
+        qty: number,
+        desc: string,
+    }[],
+    customer: string
 }
 //server action param
 export type deleteCustParams = {
@@ -49,14 +67,14 @@ export type itemListParams = {
         unit_amount: number;
         product_data: {
             name: string,
-            metadata:{
+            metadata: {
                 name: string,
                 price: number,
                 size: string,
-                qty:number,
+                qty: number,
                 sanityId: string,
                 img: string
-              }
+            }
         };
     };
     quantity: number;

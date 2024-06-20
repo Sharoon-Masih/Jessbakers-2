@@ -10,7 +10,7 @@ import { Stripe } from 'stripe'
 import { redirect } from "next/navigation";
 import { orderDetailType } from "@/components/orderDetailForm";
 
-export async function checkoutOrder(itemList: itemListParams[], currentUserId: string, values: orderDetailType) {
+export async function checkoutOrder(itemList: itemListParams[], currentUserId: string, values: orderDetailType, recentProduct?:string) {
 
  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
@@ -21,7 +21,8 @@ export async function checkoutOrder(itemList: itemListParams[], currentUserId: s
             metadata: {
                 customer: currentUserId,
                 address: values.address,
-                contact: values.contact
+                contact: values.contact,
+                orderedProduct:recentProduct ?? ''
             },
             mode: "payment",
             success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/?success=true`,

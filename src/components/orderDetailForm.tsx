@@ -15,10 +15,12 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { ICartItem } from "@/lib/database/models/cartItem.model"
-import { orderSchemaType } from "@/lib/types"
+import { ItemSchemaType, orderSchemaType, orderedProductSchemaType } from "@/lib/types"
 import { checkoutOrder, createOrder } from "@/lib/actions/order.acion"
 import { loadStripe } from '@stripe/stripe-js'
 import { useEffect } from "react"
+import { createOrderedProduct, getRecentOrderedProduct } from "@/lib/actions/orderedProduct.action"
+import { IorderedProduct } from "@/lib/database/models/orderedProduct.model"
 
 export type orderDetailType = z.infer<typeof orderDetail>
 
@@ -57,11 +59,11 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
             unit_amount: item.price * 100,  //converting it in cents bcuz these price are going to stripe checkout session.
             product_data: {
               name: item.name,
-              metadata: {
+              metadata: {  //yeh sara data product ma store toh ho rha hai but extract nhi ho rha.
                 name: item.name,
                 price: item.price,
                 size: item.size!,
-                qty:item.qty,
+                qty: item.qty,
                 sanityId: item.sanityId,
                 img: item.image
               }
@@ -74,16 +76,27 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
     })
 
 
-    const checkoutOrderData = await checkoutOrder(itemList, currentUserId, values)
+    
+    let itemInCart: ItemSchemaType;
+    const itemInCartList = cartItems.map((item) => {
+      return (
+        itemInCart = {
+          itemName: item.name,
+          price: item.price,
+          qty: item.qty,
+          desc: item.description
+        }
+      )
+    })
 
-    // const newOrder: orderSchemaType = {
-    //   // itemList: itemList,
-    //   created_At: new Date().toLocaleString(),
-    //   address: values.address,
-    //   contact: values.contact,
-    //   customer: currentUserId
-    // }
-    // await createOrder(newOrder)
+    const orderedProduct:orderedProductSchemaType={
+      itemList:itemInCartList,
+      customer:currentUserId
+    }
+    
+    await createOrderedProduct(orderedProduct)
+    const recentOrderedProduct:IorderedProduct[]= await getRecentOrderedProduct(currentUserId)
+    await checkoutOrder(itemList, currentUserId, values, recentOrderedProduct[0]._id)
   }
   return (
     <Form {...form} >
