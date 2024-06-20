@@ -64,7 +64,7 @@ export async function getAllOrders(currentUserId:string) {
             throw new Error("customer does not exist")
         }
 
-        const allOrders = await Order.find({customer:currentUserId})
+        const allOrders = await Order.find({customer:currentUserId}).populate({path:"orderedProduct",model:"OrderedProduct", select:"_id itemList "})
         
         return allOrders ? JSON.parse(JSON.stringify(allOrders)) : null
     } catch (error) {

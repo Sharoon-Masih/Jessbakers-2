@@ -8,6 +8,8 @@ export interface IorderedProduct {
         price: number,
         qty: number,
         desc: string,
+        img: string
+
     }[],
     customer: string
 }
@@ -17,6 +19,7 @@ const ItemSchema = new Schema({
     price: { type: Number, required: true },
     qty: { type: Number, required: true },
     desc: { type: String },
+    img: { type: String }
 })
 
 const orderedProductSchema = new Schema({

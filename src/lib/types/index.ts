@@ -45,15 +45,11 @@ export type ItemSchemaType = {
     price: number,
     qty: number,
     desc: string,
+    img:string
 
 }
 export type orderedProductSchemaType = {
-    itemList: {
-        itemName: string,
-        price: number,
-        qty: number,
-        desc: string,
-    }[],
+    itemList:ItemSchemaType[],
     customer: string
 }
 //server action param

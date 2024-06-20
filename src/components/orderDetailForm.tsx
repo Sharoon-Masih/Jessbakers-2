@@ -76,7 +76,7 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
     })
 
 
-    
+
     let itemInCart: ItemSchemaType;
     const itemInCartList = cartItems.map((item) => {
       return (
@@ -84,18 +84,19 @@ const OrderCheckout = ({ cartItems, currentUserId }: { cartItems: ICartItem[], c
           itemName: item.name,
           price: item.price,
           qty: item.qty,
-          desc: item.description
+          desc: item.description,
+          img: item.image
         }
       )
     })
 
-    const orderedProduct:orderedProductSchemaType={
-      itemList:itemInCartList,
-      customer:currentUserId
+    const orderedProduct: orderedProductSchemaType = {
+      itemList: itemInCartList,
+      customer: currentUserId
     }
-    
+
     await createOrderedProduct(orderedProduct)
-    const recentOrderedProduct:IorderedProduct[]= await getRecentOrderedProduct(currentUserId)
+    const recentOrderedProduct: IorderedProduct[] = await getRecentOrderedProduct(currentUserId)
     await checkoutOrder(itemList, currentUserId, values, recentOrderedProduct[0]._id)
   }
   return (

@@ -15,7 +15,6 @@ export interface Iorder extends Document {
         qty: number,
         desc: string,
     },
-    customer: string
     }
 
 }
