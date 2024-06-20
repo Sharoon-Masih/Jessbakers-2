@@ -20,7 +20,7 @@ const getProductData = async () => {
       
      }`
 
-  const fetchData = await client.fetch(query);
+  const fetchData = await client.fetch(query,{},{next:{revalidate:1000}});
   return fetchData
 }
 

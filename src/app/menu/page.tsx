@@ -17,7 +17,7 @@ const getSearchData = async () => {
         
        }`
 
-    const fetchData: Iproduct[] = await client.fetch(query);
+    const fetchData: Iproduct[] = await client.fetch(query,{},{next:{revalidate:1000}});
     return fetchData
 }
 const getCategoryData = async () => {
@@ -26,7 +26,7 @@ const getCategoryData = async () => {
          _id,
         }`
 
-    const fetchcategoryData = await client.fetch(query);
+    const fetchcategoryData = await client.fetch(query,{},{next:{revalidate:1000}});
     return fetchcategoryData
 }
 

@@ -27,7 +27,7 @@ const categoryPage = async ({params}:{params:{slug:string}}) => {
      const currentUserId=sessionClaims?.userId as string
     return (
         <main className='height '>
-            <HeroSec ItemData={ItemData} currentUserId={currentUserId}/>
+         {ItemData &&  <HeroSec ItemData={ItemData} currentUserId={currentUserId}/>}
         </main>
     )
 }
