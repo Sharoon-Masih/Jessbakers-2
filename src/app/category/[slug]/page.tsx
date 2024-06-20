@@ -17,7 +17,7 @@ const getProductData = async (category: string) => {
         
        }`
 
-    const fetchData:Iproduct[] = await client.fetch(query);
+    const fetchData:Iproduct[] = await client.fetch(query,{},{next:{revalidate:1000}});
     return fetchData
 }
 
