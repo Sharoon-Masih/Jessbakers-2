@@ -1,5 +1,6 @@
 import { CarouselSkeleton } from '@/components/carouselSkeleton'
 import OrderCard from '@/components/orderCard'
+import OrderPageSkeleton from '@/components/orderPageSkeleton'
 import { getAllOrders } from '@/lib/actions/order.acion'
 import { Iorder } from '@/lib/database/models/order.model'
 import { auth } from '@clerk/nextjs/server'
@@ -16,7 +17,7 @@ const OrderPage = async () => {
                     <span className={`text-[18px] sm:text-[20px] md:text-[25px] font-semibold tracking-[9%] text-[#4A1D1F] uppercase truncate`}>
                         My Orders
                     </span>
-                    {OrderData === null ? <CarouselSkeleton /> : OrderData.length > 0 ?  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 lg:gap-10  z-30 py-[20px] lg:py-[30px]'>
+                    {OrderData === null ? <OrderPageSkeleton /> : OrderData?.length > 0 ?  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 lg:gap-10  z-30 py-[20px] lg:py-[30px]'>
                        { OrderData.map((Order) => <OrderCard orderData={Order} key={Order._id}/> )}
                     </div> :
                         <div className='flex flex-col items-center justify-center bg-[#FBEDCD] rounded-[14px] min-h-[200px] w-full gap-3 text-center my-[20px] lg:my-[30px]'>
