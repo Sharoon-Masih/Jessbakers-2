@@ -13,8 +13,8 @@ const OrderCard = async ({ orderData }: { orderData: Iorder }) => {
             </div>
             <div className='flex flex-col gap-3 divide-y flex-1 justify-start overflow-auto'>
                 {orderData.orderedProduct.itemList.map((itemData) => <div className='flex justify-between gap-5 w-full items-center pt-3' key={itemData.itemName}>
-                    <div className='w-[80px] h-[80px] rounded-full bg-white overflow-hidden'>
-                       <Image src={itemData.img} height={120} width={120} alt={itemData.itemName} className='object-cover object-center'/>
+                    <div className='w-[80px] h-[80px] rounded-full bg-white overflow-hidden relative'>
+                       <Image src={itemData.img} fill={true} sizes={"sm"} alt={itemData.itemName} className='object-cover object-center'/>
                     </div>
                     <div className='flex flex-col gap-1 relative flex-1'>
                         <h1 className='line-clamp-1 font-semibold text-base'>{itemData.itemName}</h1>

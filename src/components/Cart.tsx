@@ -98,8 +98,8 @@ export function Cart() {
                     <SheetTitle className="text-[#4A1D1F] ">Your Cart</SheetTitle>
                 </SheetHeader>
                 {!cartItems ? <CartSkeleton /> : cartItems && cartItems.length !== 0 ? < div className="flex h-[96%] w-full justify-between flex-col "><div className="w-full flex flex-col divide-y divide-[#4A1D1F] divide-opacity-60 pt-[30px] h-[75%] overflow-y-auto ">  {cartItems.map((Id) => <div key={Id.id} className="flex gap-3 py-3 justify-between items-center">
-                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border-2 border-[#4A1D1F]">
-                        <Image src={Id.image as string} width={100} height={100} alt={Id.name} />
+                    <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border-2 border-[#4A1D1F] relative">
+                        <Image src={Id.image as string} fill={true} sizes={"sm"} alt={Id.name} className="object-cover object-center"/>
                     </div>
                     <div className="flex flex-col flex-1 gap-2 ">
                         <div className="flex justify-between text-[#272727] text-base font-medium antialiased gap-1">
