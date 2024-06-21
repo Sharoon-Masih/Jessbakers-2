@@ -6,7 +6,7 @@ import React from 'react'
 const OrderCard = async ({ orderData }: { orderData: Iorder }) => {
 
     return (
-        <div className='flex flex-col justify-between gap-5 bg-gray-50 border text-[#4A1D1F] rounded-[14px] py-5 px-4 w-full md:w-[330px] lg:w-[320px]   h-[400px]'>
+        <div className='flex flex-col justify-between gap-5 bg-gray-50 border text-[#4A1D1F] rounded-[14px] py-5 px-4 w-full md:w-[330px] lg:w-[320px] xl:w-[310px]   h-[400px]'>
             <div className='w-full flex-col gap-1 items-start justify-center '>
                 <strong className='text-sm sm:text-base lg:text-sm'>Order #{orderData._id}</strong>
                 <p className='text-[#272727] font-medium opacity-70 text-sm'>{orderData.created_At}</p>
@@ -14,7 +14,7 @@ const OrderCard = async ({ orderData }: { orderData: Iorder }) => {
             <div className='flex flex-col gap-3 divide-y flex-1 justify-start overflow-auto'>
                 {orderData.orderedProduct.itemList.map((itemData) => <div className='flex justify-between gap-5 w-full items-center pt-3' key={itemData.itemName}>
                     <div className='w-[80px] h-[80px] rounded-full bg-white overflow-hidden'>
-                        <Image src={itemData.img} alt={itemData.itemName} fill={true} sizes='lg'/>
+                       <Image src={itemData.img} height={120} width={120} alt={itemData.itemName} className='object-cover object-center'/>
                     </div>
                     <div className='flex flex-col gap-1 relative flex-1'>
                         <h1 className='line-clamp-1 font-semibold text-base'>{itemData.itemName}</h1>

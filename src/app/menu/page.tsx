@@ -62,7 +62,7 @@ const Menu = async ({ searchParams }: { searchParams: { item: string } }) => {
                {!searchParams.item ? categoryData.map((category) => <div key={category._id}><span className={`text-[18px] sm:text-[20px] md:text-[25px] font-semibold tracking-[9%] text-[#4A1D1F] uppercase truncate`} id={`${category.name}`}>
                     {category.name}&apos;S
                 </span>
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px]'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center items-center gap-5 z-30 py-[20px] lg:py-[30px] '>
                         {SearchData.filter((Item) => Item.category === category.name).map((Item) => <ItemCard Item={Item} key={Item._id} currentUserId={currentUserId}/>)}
 
                     </div> </div>) :

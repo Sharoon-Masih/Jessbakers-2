@@ -28,6 +28,6 @@ const OrderedProductSchema = new Schema({
     customer: { type: Schema.Types.ObjectId, ref: "Customer" }
 })
 
-const OrderedProductModel = models.OrderedProduct || model("OrderedProduct", OrderedProductSchema)
+const OrderedProduct= models.OrderedProduct || model("OrderedProduct", OrderedProductSchema)
 
-export default OrderedProductModel;
+export default OrderedProduct;

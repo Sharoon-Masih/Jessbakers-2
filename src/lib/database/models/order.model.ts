@@ -1,4 +1,5 @@
 import { Schema, model, models } from "mongoose";
+import OrderedProduct from "./orderedProduct.model";
 export interface Iorder extends Document {
     _id: string,
     stripeId: string,
