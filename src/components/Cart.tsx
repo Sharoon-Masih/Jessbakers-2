@@ -88,7 +88,7 @@ export function Cart() {
     }
     let totalPrice;
     if (cartItems?.length! > 0) {
-        totalPrice = cartItems?.reduce((prev, curr) => prev + curr.price, 0)
+        totalPrice = cartItems?.reduce((prev, curr) => prev + curr.price, 0) //yaha par hum cart ma jitni be items hain unkay total price count krka nichay subtotal ma display kr rhay hain
     }
     return (
         <Sheet open={shouldDisplayCart} onOpenChange={handleCartClick}>
