@@ -20,7 +20,7 @@ import OrderCheckout from "./orderDetailForm"
 
 
 export function Cart() {
-    const { totalPrice, handleCartClick, shouldDisplayCart } = useShoppingCart()
+    const { handleCartClick, shouldDisplayCart } = useShoppingCart()
 
     const [cartItems, SetcartItems] = useState<ICartItem[] | null>(null)
 
@@ -86,6 +86,10 @@ export function Cart() {
 
         }
     }
+    let totalPrice;
+    if (cartItems?.length! > 0) {
+        totalPrice = cartItems?.reduce((prev, curr) => prev + curr.price, 0)
+    }
     return (
         <Sheet open={shouldDisplayCart} onOpenChange={handleCartClick}>
 
@@ -99,7 +103,7 @@ export function Cart() {
                 </SheetHeader>
                 {!cartItems ? <CartSkeleton /> : cartItems && cartItems.length !== 0 ? < div className="flex h-[96%] w-full justify-between flex-col "><div className="w-full flex flex-col divide-y divide-[#4A1D1F] divide-opacity-60 pt-[30px] h-[75%] overflow-y-auto ">  {cartItems.map((Id) => <div key={Id.id} className="flex gap-3 py-3 justify-between items-center">
                     <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border-2 border-[#4A1D1F] relative">
-                        <Image src={Id.image as string} fill={true} sizes={"sm"} alt={Id.name} className="object-cover object-center"/>
+                        <Image src={Id.image as string} fill={true} sizes={"sm"} alt={Id.name} className="object-cover object-center" />
                     </div>
                     <div className="flex flex-col flex-1 gap-2 ">
                         <div className="flex justify-between text-[#272727] text-base font-medium antialiased gap-1">
@@ -125,7 +129,7 @@ export function Cart() {
                         <div className="flex flex-col w-full">
                             <div className="text-lg font-medium flex justify-between items-center">
                                 <strong>Subtotal:</strong>
-                                <strong>{totalPrice}RS</strong>
+                                <strong>{totalPrice!}RS</strong>
                             </div>
                             <p className="text-sm font-medium  text-[#4A1D1F] text-opacity-80 antialiased">Delivery charges will be 250</p>
                         </div>
