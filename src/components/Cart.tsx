@@ -88,7 +88,9 @@ export function Cart() {
     }
     let totalPrice;
     if (cartItems?.length! > 0) {
-        totalPrice = cartItems?.reduce((prev, curr) => prev + curr.price, 0) //yaha par hum cart ma jitni be items hain unkay total price count krka nichay subtotal ma display kr rhay hain
+        totalPrice = cartItems?.reduce((prev, curr) => prev + curr.price, 0) //yaha par hum cart ma jitni be items hain unkay total price count krka nichay subtotal ma display kr rhay hain, but yaad rakhna agr UI pa koi msla ho toh ek state variable bna kay uska through update krwa lena state.
+
+        //ab yaha par Ui pa update iss liya ho rha hai begair state variable ko use kiya kiu kay jab jab cartItem ki value change hogi toh setCartItem ka func re-render krega component ko or jab wo re-render krega toh uss duran humara yeh wala code be execute hoga toh jab yeh code execute hoga toh .reduce ka method dubara sa cartItem ma say sump krega toh automatically totalPrice ki value change hojayegi or wo Ui pa be show hojayegi.
     }
     return (
         <Sheet open={shouldDisplayCart} onOpenChange={handleCartClick}>

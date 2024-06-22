@@ -10,7 +10,7 @@ import { SingleItemCard } from './singleItem'
 import { usePathname, useRouter } from 'next/navigation'
 import CardSkeleton from './cardSkeleton'
 
-const ItemCard = ({ Item,currentUserId }: { Item: Iproduct,currentUserId:string }) => {
+const ItemCard = ({ Item, currentUserId }: { Item: Iproduct, currentUserId: string }) => {
     const [isRating, SetisRating] = React.useState<boolean>(false)
     const Route = useRouter();
     const pathName = usePathname()
@@ -28,7 +28,7 @@ const ItemCard = ({ Item,currentUserId }: { Item: Iproduct,currentUserId:string 
                     <Card className="h-[370px]  w-[300px] hover:ring hover:ring-[#FBEDCD] hover:transition duration-100 ">
                         <CardContent className="flex flex-col aspect-square items-start justify-center p-6 gap-1">
                             <div className=" w-full rounded-sm border h-[250px] relative flex justify-center items-center">
-                             {Item.Img ? <Image src={Item.Img} alt={Item.name} fill={true} priority /> : null}
+                                {Item.Img ? <Image src={Item.Img} alt={Item.name} fill={true} priority /> : "no img"}
                             </div>
                             <h3 className="text-[18px] text-[#000000] font-normal truncate w-full">{Item.name}</h3>
                             <div className="w-full flex justify-between items-center text-[#000000] font-medium"><span>Price:</span><span>{Item.price}</span></div>
